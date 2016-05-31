@@ -7,6 +7,7 @@ description = 'RxJava: Reactive Extensions for the JVM – a library for composi
 
 apply plugin: 'java'
 apply plugin: 'nebula.rxjava-project'
+apply plugin: 'jacoco'
 
 dependencies {
     testCompile 'junit:junit-dep:4.10'
@@ -46,3 +47,15 @@ if (project.hasProperty('release.useLastTag')) {
 test{
      maxHeapSize = "2g"
 }
+
+jacoco {
+    toolVersion = '0.7.6.201602180812'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+build.dependsOn jacocoTestReport
