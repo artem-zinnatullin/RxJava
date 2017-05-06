@@ -423,9 +423,13 @@ public final class RxJavaPlugins {
     }
 
     static void uncaught(@NonNull Throwable error) {
-        Thread currentThread = Thread.currentThread();
-        UncaughtExceptionHandler handler = currentThread.getUncaughtExceptionHandler();
-        handler.uncaughtException(currentThread, error);
+        if (error instanceof OnErrorNotImplementedException) {
+            throw (OnErrorNotImplementedException) error;
+        } else {
+            Thread currentThread = Thread.currentThread();
+            UncaughtExceptionHandler handler = currentThread.getUncaughtExceptionHandler();
+            handler.uncaughtException(currentThread, error);
+        }
     }
 
     /**

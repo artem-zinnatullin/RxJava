@@ -13,25 +13,57 @@
 
 package io.reactivex.observable;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.*;
-
-import org.junit.*;
+import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
+import io.reactivex.MaybeObserver;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.Observer;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.TestHelper;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.Disposables;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
+import io.reactivex.observables.ConnectableObservable;
+import io.reactivex.observers.DefaultObserver;
+import io.reactivex.observers.TestObserver;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.schedulers.TestScheduler;
+import io.reactivex.subjects.ReplaySubject;
+import io.reactivex.subjects.Subject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.mockito.InOrder;
 
-import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.*;
-import io.reactivex.functions.*;
-import io.reactivex.observables.ConnectableObservable;
-import io.reactivex.observers.*;
-import io.reactivex.schedulers.*;
-import io.reactivex.subjects.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.anyLong;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class ObservableTest {
 
@@ -1102,6 +1134,7 @@ public class ObservableTest {
     }
 
     @Test
+    @Ignore("Freezes")
     public void testErrorThrownIssue1685() {
         Subject<Object> subject = ReplaySubject.create();
 

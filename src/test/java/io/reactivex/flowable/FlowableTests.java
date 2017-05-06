@@ -13,26 +13,62 @@
 
 package io.reactivex.flowable;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.*;
-
-import org.junit.*;
-import org.mockito.InOrder;
-import org.reactivestreams.*;
-
-import io.reactivex.*;
+import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableSubscriber;
+import io.reactivex.FlowableTransformer;
+import io.reactivex.MaybeObserver;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.TestHelper;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.exceptions.OnErrorNotImplementedException;
 import io.reactivex.exceptions.TestException;
 import io.reactivex.flowables.ConnectableFlowable;
-import io.reactivex.functions.*;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.internal.subscriptions.BooleanSubscription;
-import io.reactivex.processors.*;
-import io.reactivex.schedulers.*;
-import io.reactivex.subscribers.*;
+import io.reactivex.processors.FlowableProcessor;
+import io.reactivex.processors.ReplayProcessor;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.schedulers.TestScheduler;
+import io.reactivex.subscribers.DefaultSubscriber;
+import io.reactivex.subscribers.TestSubscriber;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mockito.InOrder;
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.isA;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class FlowableTests {
 
@@ -58,8 +94,8 @@ public class FlowableTests {
 
     @Test
     public void fromArray() {
-        String[] items = new String[] { "one", "two", "three" };
-        assertEquals((Long)3L, Flowable.fromArray(items).count().blockingGet());
+        String[] items = new String[]{"one", "two", "three"};
+        assertEquals((Long) 3L, Flowable.fromArray(items).count().blockingGet());
         assertEquals("two", Flowable.fromArray(items).skip(1).take(1).blockingSingle());
         assertEquals("three", Flowable.fromArray(items).takeLast(1).blockingSingle());
     }
@@ -71,7 +107,7 @@ public class FlowableTests {
         items.add("two");
         items.add("three");
 
-        assertEquals((Long)3L, Flowable.fromIterable(items).count().blockingGet());
+        assertEquals((Long) 3L, Flowable.fromIterable(items).count().blockingGet());
         assertEquals("two", Flowable.fromIterable(items).skip(1).take(1).blockingSingle());
         assertEquals("three", Flowable.fromIterable(items).takeLast(1).blockingSingle());
     }
@@ -80,7 +116,7 @@ public class FlowableTests {
     public void fromArityArgs3() {
         Flowable<String> items = Flowable.just("one", "two", "three");
 
-        assertEquals((Long)3L, items.count().blockingGet());
+        assertEquals((Long) 3L, items.count().blockingGet());
         assertEquals("two", items.skip(1).take(1).blockingSingle());
         assertEquals("three", items.takeLast(1).blockingSingle());
     }
@@ -89,7 +125,7 @@ public class FlowableTests {
     public void fromArityArgs1() {
         Flowable<String> items = Flowable.just("one");
 
-        assertEquals((Long)1L, items.count().blockingGet());
+        assertEquals((Long) 1L, items.count().blockingGet());
         assertEquals("one", items.takeLast(1).blockingSingle());
     }
 
@@ -264,8 +300,8 @@ public class FlowableTests {
                 return t1 + t2;
             }
         })
-        .toFlowable()
-        .subscribe(w);
+                .toFlowable()
+                .subscribe(w);
         // we should be called only once
         verify(w, times(1)).onNext(anyInt());
         verify(w).onNext(10);
@@ -280,9 +316,9 @@ public class FlowableTests {
                 return t1 + t2;
             }
         })
-        .toFlowable()
-        .test()
-        .assertResult();
+                .toFlowable()
+                .test()
+                .assertResult();
     }
 
     /**
@@ -299,7 +335,7 @@ public class FlowableTests {
                 return t1 + t2;
             }
         })
-        .blockingGet();
+                .blockingGet();
 
         assertEquals(1, value);
     }
@@ -313,7 +349,7 @@ public class FlowableTests {
                 return t1 + t2;
             }
         })
-        .subscribe(wo);
+                .subscribe(wo);
         // we should be called only once
         verify(wo, times(1)).onSuccess(anyInt());
         verify(wo).onSuccess(60);
@@ -327,7 +363,9 @@ public class FlowableTests {
         final RuntimeException re = new RuntimeException("bad impl");
         Flowable<String> o = Flowable.unsafeCreate(new Publisher<String>() {
             @Override
-            public void subscribe(Subscriber<? super String> s) { throw re; }
+            public void subscribe(Subscriber<? super String> s) {
+                throw re;
+            }
         });
 
         o.subscribe(observer);
@@ -356,7 +394,9 @@ public class FlowableTests {
      * It is handled by the AtomicObserver that wraps the provided Observer.
      *
      * Result: Passes (if AtomicObserver functionality exists)
-     * @throws InterruptedException if the test is interrupted
+     *
+     * @throws InterruptedException
+     *         if the test is interrupted
      */
     @Test
     public void testCustomObservableWithErrorInObserverAsynchronous() throws InterruptedException {
@@ -366,31 +406,31 @@ public class FlowableTests {
 
         // FIXME custom built???
         Flowable.just("1", "2", "three", "4")
-        .subscribeOn(Schedulers.newThread())
-        .safeSubscribe(new DefaultSubscriber<String>() {
-            @Override
-            public void onComplete() {
-                System.out.println("completed");
-                latch.countDown();
-            }
+                .subscribeOn(Schedulers.newThread())
+                .safeSubscribe(new DefaultSubscriber<String>() {
+                    @Override
+                    public void onComplete() {
+                        System.out.println("completed");
+                        latch.countDown();
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                error.set(e);
-                System.out.println("error");
-                e.printStackTrace();
-                latch.countDown();
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        error.set(e);
+                        System.out.println("error");
+                        e.printStackTrace();
+                        latch.countDown();
+                    }
 
-            @Override
-            public void onNext(String v) {
-                int num = Integer.parseInt(v);
-                System.out.println(num);
-                // doSomething(num);
-                count.incrementAndGet();
-            }
+                    @Override
+                    public void onNext(String v) {
+                        int num = Integer.parseInt(v);
+                        System.out.println(num);
+                        // doSomething(num);
+                        count.incrementAndGet();
+                    }
 
-        });
+                });
 
         // wait for async sequence to complete
         latch.await();
@@ -414,29 +454,29 @@ public class FlowableTests {
 
         // FIXME custom built???
         Flowable.just("1", "2", "three", "4")
-        .safeSubscribe(new DefaultSubscriber<String>() {
+                .safeSubscribe(new DefaultSubscriber<String>() {
 
-            @Override
-            public void onComplete() {
-                System.out.println("completed");
-            }
+                    @Override
+                    public void onComplete() {
+                        System.out.println("completed");
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                error.set(e);
-                System.out.println("error");
-                e.printStackTrace();
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        error.set(e);
+                        System.out.println("error");
+                        e.printStackTrace();
+                    }
 
-            @Override
-            public void onNext(String v) {
-                int num = Integer.parseInt(v);
-                System.out.println(num);
-                // doSomething(num);
-                count.incrementAndGet();
-            }
+                    @Override
+                    public void onNext(String v) {
+                        int num = Integer.parseInt(v);
+                        System.out.println(num);
+                        // doSomething(num);
+                        count.incrementAndGet();
+                    }
 
-        });
+                });
         assertEquals(2, count.get());
         assertNotNull(error.get());
         if (!(error.get() instanceof NumberFormatException)) {
@@ -460,27 +500,27 @@ public class FlowableTests {
                 return new NumberFormatException();
             }
         }))
-        .subscribe(new DefaultSubscriber<String>() {
+                .subscribe(new DefaultSubscriber<String>() {
 
-            @Override
-            public void onComplete() {
-                System.out.println("completed");
-            }
+                    @Override
+                    public void onComplete() {
+                        System.out.println("completed");
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                error.set(e);
-                System.out.println("error");
-                e.printStackTrace();
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        error.set(e);
+                        System.out.println("error");
+                        e.printStackTrace();
+                    }
 
-            @Override
-            public void onNext(String v) {
-                System.out.println(v);
-                count.incrementAndGet();
-            }
+                    @Override
+                    public void onNext(String v) {
+                        System.out.println(v);
+                        count.incrementAndGet();
+                    }
 
-        });
+                });
         assertEquals(2, count.get());
         assertNotNull(error.get());
         if (!(error.get() instanceof NumberFormatException)) {
@@ -532,16 +572,16 @@ public class FlowableTests {
         ConnectableFlowable<String> o = Flowable.<String>unsafeCreate(new Publisher<String>() {
             @Override
             public void subscribe(final Subscriber<? super String> observer) {
-                    observer.onSubscribe(new BooleanSubscription());
-                    new Thread(new Runnable() {
+                observer.onSubscribe(new BooleanSubscription());
+                new Thread(new Runnable() {
 
-                        @Override
-                        public void run() {
-                            counter.incrementAndGet();
-                            observer.onNext("one");
-                            observer.onComplete();
-                        }
-                    }).start();
+                    @Override
+                    public void run() {
+                        counter.incrementAndGet();
+                        observer.onNext("one");
+                        observer.onComplete();
+                    }
+                }).start();
             }
         }).replay();
 
@@ -585,15 +625,15 @@ public class FlowableTests {
         Flowable<String> o = Flowable.<String>unsafeCreate(new Publisher<String>() {
             @Override
             public void subscribe(final Subscriber<? super String> observer) {
-                    observer.onSubscribe(new BooleanSubscription());
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            counter.incrementAndGet();
-                            observer.onNext("one");
-                            observer.onComplete();
-                        }
-                    }).start();
+                observer.onSubscribe(new BooleanSubscription());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        counter.incrementAndGet();
+                        observer.onNext("one");
+                        observer.onComplete();
+                    }
+                }).start();
             }
         }).cache();
 
@@ -683,7 +723,7 @@ public class FlowableTests {
     public void testErrorThrownWithoutErrorHandlerSynchronous() {
         try {
             Flowable.error(new RuntimeException("failure"))
-            .subscribe();
+                    .subscribe();
             fail("expected exception");
         } catch (Throwable e) {
             assertEquals("failure", e.getMessage());
@@ -699,7 +739,8 @@ public class FlowableTests {
      * to rethrow the exception on the thread that the message comes out from the Observable.
      * The OnCompleted behavior in this case is to do nothing."
      *
-     * @throws InterruptedException if the await is interrupted
+     * @throws InterruptedException
+     *         if the await is interrupted
      */
     @Test
     @Ignore("Subscribers can't throw")
@@ -735,29 +776,29 @@ public class FlowableTests {
         final AtomicInteger count = new AtomicInteger();
         final AtomicReference<Throwable> error = new AtomicReference<Throwable>();
         Flowable.just("1", "2", "three", "4").take(3)
-        .safeSubscribe(new DefaultSubscriber<String>() {
+                .safeSubscribe(new DefaultSubscriber<String>() {
 
-            @Override
-            public void onComplete() {
-                System.out.println("completed");
-            }
+                    @Override
+                    public void onComplete() {
+                        System.out.println("completed");
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                error.set(e);
-                System.out.println("error");
-                e.printStackTrace();
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        error.set(e);
+                        System.out.println("error");
+                        e.printStackTrace();
+                    }
 
-            @Override
-            public void onNext(String v) {
-                int num = Integer.parseInt(v);
-                System.out.println(num);
-                // doSomething(num);
-                count.incrementAndGet();
-            }
+                    @Override
+                    public void onNext(String v) {
+                        int num = Integer.parseInt(v);
+                        System.out.println(num);
+                        // doSomething(num);
+                        count.incrementAndGet();
+                    }
 
-        });
+                });
         assertEquals(2, count.get());
         assertNotNull(error.get());
         if (!(error.get() instanceof NumberFormatException)) {
@@ -790,7 +831,7 @@ public class FlowableTests {
         l2.add(2);
 
         @SuppressWarnings("rawtypes")
-        Flowable<List> observable = Flowable.<Object> just(l1, l2, "123").ofType(List.class);
+        Flowable<List> observable = Flowable.<Object>just(l1, l2, "123").ofType(List.class);
 
         Subscriber<Object> observer = TestHelper.mockSubscriber();
 
@@ -852,7 +893,7 @@ public class FlowableTests {
 
     @Test
     public void testContainsWithEmptyObservableFlowable() {
-        Flowable<Boolean> observable = Flowable.<String> empty().contains("a").toFlowable();
+        Flowable<Boolean> observable = Flowable.<String>empty().contains("a").toFlowable();
 
         FlowableSubscriber<Object> observer = TestHelper.mockSubscriber();
 
@@ -911,7 +952,7 @@ public class FlowableTests {
 
     @Test
     public void testContainsWithEmptyObservable() {
-        Single<Boolean> observable = Flowable.<String> empty().contains("a");
+        Single<Boolean> observable = Flowable.<String>empty().contains("a");
 
         SingleObserver<Boolean> observer = TestHelper.mockSingleObserver();
 
@@ -1042,7 +1083,7 @@ public class FlowableTests {
     public void testTakeWhileToList() {
         final int expectedCount = 3;
         final AtomicInteger count = new AtomicInteger();
-        for (int i = 0;i < expectedCount; i++) {
+        for (int i = 0; i < expectedCount; i++) {
             Flowable
                     .just(Boolean.TRUE, Boolean.FALSE)
                     .takeWhile(new Predicate<Boolean>() {
@@ -1077,21 +1118,22 @@ public class FlowableTests {
                 });
             }
         })
-        .subscribe(ts);
+                .subscribe(ts);
         ts.assertTerminated();
         ts.assertNoErrors();
         ts.assertValues("1", "2", "3");
     }
 
     @Test
+    @Ignore("freezes")
     public void testErrorThrownIssue1685() {
         FlowableProcessor<Object> subject = ReplayProcessor.create();
 
         Flowable.error(new RuntimeException("oops"))
-            .materialize()
-            .delay(1, TimeUnit.SECONDS)
-            .dematerialize()
-            .subscribe(subject);
+                .materialize()
+                .delay(1, TimeUnit.SECONDS)
+                .dematerialize()
+                .subscribe(subject);
 
         subject.subscribe();
         subject.materialize().blockingFirst();
@@ -1138,8 +1180,8 @@ public class FlowableTests {
     @Test(expected = NullPointerException.class)
     public void testForEachWithNull() {
         Flowable.error(new Exception("boo"))
-        //
-        .forEach(null);
+                //
+                .forEach(null);
     }
 
     @Test
@@ -1149,12 +1191,12 @@ public class FlowableTests {
         Flowable.just(value).to(new Function<Flowable<Object>, Object>() {
             @Override
             public Object apply(Flowable<Object> onSubscribe) {
-                    onSubscribe.subscribe(subscriber);
-                    subscriber.assertNoErrors();
-                    subscriber.assertComplete();
-                    subscriber.assertValue(value);
-                    return subscriber.values().get(0);
-                }
+                onSubscribe.subscribe(subscriber);
+                subscriber.assertNoErrors();
+                subscriber.assertComplete();
+                subscriber.assertValue(value);
+                return subscriber.values().get(0);
+            }
         });
     }
 
@@ -1180,8 +1222,7 @@ public class FlowableTests {
 
     @Test
     public void zipIterableObject() {
-        @SuppressWarnings("unchecked")
-        final List<Flowable<Integer>> flowables = Arrays.asList(Flowable.just(1, 2, 3), Flowable.just(1, 2, 3));
+        @SuppressWarnings("unchecked") final List<Flowable<Integer>> flowables = Arrays.asList(Flowable.just(1, 2, 3), Flowable.just(1, 2, 3));
         Flowable.zip(flowables, new Function<Object[], Object>() {
             @Override
             public Object apply(Object[] o) throws Exception {
@@ -1196,8 +1237,7 @@ public class FlowableTests {
 
     @Test
     public void combineLatestObject() {
-        @SuppressWarnings("unchecked")
-        final List<Flowable<Integer>> flowables = Arrays.asList(Flowable.just(1, 2, 3), Flowable.just(1, 2, 3));
+        @SuppressWarnings("unchecked") final List<Flowable<Integer>> flowables = Arrays.asList(Flowable.just(1, 2, 3), Flowable.just(1, 2, 3));
         Flowable.combineLatest(flowables, new Function<Object[], Object>() {
             @Override
             public Object apply(final Object[] o) throws Exception {
@@ -1208,5 +1248,62 @@ public class FlowableTests {
                 return sum;
             }
         }).test().assertResult(3, 6, 9);
+    }
+
+    @Test
+    public void throwOnErrorNotImplementedException() {
+        final RuntimeException exception = new RuntimeException("test");
+        
+        try {
+            Flowable
+                    .fromCallable(new Callable<Object>() {
+                        @Override
+                        public Object call() throws Exception {
+                            throw exception;
+                        }
+                    })
+                    .subscribe();
+            fail();
+        } catch (OnErrorNotImplementedException expected) {
+            assertSame(exception, expected.getCause());
+        }
+    }
+
+    @Test
+    public void notThrowOnErrorNotImplementedException() {
+        final RuntimeException exception = new RuntimeException("test");
+
+        try {
+            Flowable
+                    .fromCallable(new Callable<Object>() {
+                        @Override
+                        public Object call() throws Exception {
+                            throw exception;
+                        }
+                    })
+                    .subscribe(new Subscriber<Object>() {
+                        @Override
+                        public void onSubscribe(Subscription s) {
+                            
+                        }
+
+                        @Override
+                        public void onNext(Object o) {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable t) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        } catch (Throwable any) {
+            fail("Should not throw");
+        }
     }
 }

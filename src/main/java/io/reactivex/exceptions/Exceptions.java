@@ -65,7 +65,10 @@ public final class Exceptions {
      */
     public static void throwIfFatal(@NonNull Throwable t) {
         // values here derived from https://github.com/ReactiveX/RxJava/issues/748#issuecomment-32471495
-        if (t instanceof VirtualMachineError) {
+        if (t instanceof OnErrorNotImplementedException) {
+            throw (OnErrorNotImplementedException) t;
+        }
+        else if (t instanceof VirtualMachineError) {
             throw (VirtualMachineError) t;
         } else if (t instanceof ThreadDeath) {
             throw (ThreadDeath) t;
