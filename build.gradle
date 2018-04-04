@@ -121,6 +121,10 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+tasks.withType(JavaCompile) {
+  options.compilerArgs += [ '-Xep:ImmutableModification:OFF', '-Xep:PrivateSecurityContractProtoAccess:OFF', '-Xep:ShouldHaveEvenArgs:OFF', '-Xep:OptionalNotPresent:OFF' ]
+}
+
 artifacts {
     archives jar
     archives sourcesJar
