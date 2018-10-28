@@ -129,7 +129,12 @@ public final class ExceptionHelper {
                 + unit.toString().toLowerCase()
                 + " and has been terminated.";
     }
-    
+
+    public static Throwable singleOnSuccessThrown(Throwable cause) {
+        return new IllegalStateException("Exception occurred in onSuccess handler, it cannot be delivered " +
+                "to onError handler due to the contract of Single", cause);
+    }
+
     static final class Termination extends Throwable {
 
         private static final long serialVersionUID = -4649703670690200604L;

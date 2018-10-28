@@ -21,6 +21,7 @@ import io.reactivex.exceptions.*;
 import io.reactivex.functions.Consumer;
 import io.reactivex.internal.disposables.*;
 import io.reactivex.internal.functions.Functions;
+import io.reactivex.internal.util.ExceptionHelper;
 import io.reactivex.observers.LambdaConsumerIntrospection;
 import io.reactivex.plugins.RxJavaPlugins;
 
@@ -62,7 +63,7 @@ implements SingleObserver<T>, Disposable, LambdaConsumerIntrospection {
             onSuccess.accept(value);
         } catch (Throwable ex) {
             Exceptions.throwIfFatal(ex);
-            RxJavaPlugins.onError(ex);
+            RxJavaPlugins.onError(ExceptionHelper.singleOnSuccessThrown(ex));
         }
     }
 

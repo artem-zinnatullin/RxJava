@@ -20,6 +20,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.exceptions.*;
 import io.reactivex.functions.BiConsumer;
 import io.reactivex.internal.disposables.*;
+import io.reactivex.internal.util.ExceptionHelper;
 import io.reactivex.plugins.RxJavaPlugins;
 
 public final class BiConsumerSingleObserver<T>
@@ -56,7 +57,7 @@ implements SingleObserver<T>, Disposable {
             onCallback.accept(value, null);
         } catch (Throwable ex) {
             Exceptions.throwIfFatal(ex);
-            RxJavaPlugins.onError(ex);
+            RxJavaPlugins.onError(ExceptionHelper.singleOnSuccessThrown(ex));
         }
     }
 

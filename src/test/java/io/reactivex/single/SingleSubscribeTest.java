@@ -141,7 +141,13 @@ public class SingleSubscribeTest {
                 }
             });
 
-            TestHelper.assertUndeliverable(list, 0, TestException.class);
+            TestHelper.assertError(
+                    list,
+                    0,
+                    IllegalStateException.class,
+                    "Exception occurred in onSuccess handler, it cannot be delivered " +
+                            "to onError handler due to the contract of Single"
+            );
         } finally {
             RxJavaPlugins.reset();
         }
@@ -182,7 +188,13 @@ public class SingleSubscribeTest {
                 }
             });
 
-            TestHelper.assertUndeliverable(list, 0, TestException.class);
+            TestHelper.assertError(
+                    list,
+                    0,
+                    IllegalStateException.class,
+                    "Exception occurred in onSuccess handler, it cannot be delivered " +
+                            "to onError handler due to the contract of Single"
+            );
         } finally {
             RxJavaPlugins.reset();
         }
