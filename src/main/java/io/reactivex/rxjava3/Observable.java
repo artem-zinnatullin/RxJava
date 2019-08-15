@@ -16,6 +16,7 @@ package io.reactivex.rxjava3;
 import java.util.*;
 import java.util.concurrent.*;
 
+import io.reactivex.rxjava3.internal.rxjava2interop.RxJava3To2Interop;
 import org.reactivestreams.Publisher;
 
 import io.reactivex.rxjava3.annotations.*;
@@ -15495,41 +15496,8 @@ public abstract class Observable<T> implements ObservableSource<T> {
         return to;
     }
 
+    // TODO docs, tests, etc.
     public final io.reactivex.Observable<T> toV2Observable() {
-        // TODO proper impl.
-        final Observable<T> v3Observable = this;
-
-        return io.reactivex.Observable.create(new io.reactivex.ObservableOnSubscribe<T>() {
-            @Override
-            public void subscribe(final io.reactivex.ObservableEmitter<T> emitter) throws Exception {
-                v3Observable.subscribe(new Observer<T>() {
-                    @Override
-                    public void onSubscribe(final Disposable d) {
-                        // TODO proper disposable impl.
-                        emitter.setDisposable(io.reactivex.disposables.Disposables.fromRunnable(new Runnable() {
-                            @Override
-                            public void run() {
-                                d.dispose();
-                            }
-                        }));
-                    }
-
-                    @Override
-                    public void onNext(T t) {
-                        emitter.onNext(t);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        emitter.onError(e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        emitter.onComplete();
-                    }
-                });
-            }
-        });
+        return RxJava3To2Interop.v3ObservableToV2(this);
     }
 }
