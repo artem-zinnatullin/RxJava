@@ -17,17 +17,18 @@ import java.lang.reflect.*;
 import java.util.*;
 import java.util.concurrent.*;
 
+import io.reactivex.rxjava3.*;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.Observer;
 import org.junit.*;
 
 import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.*;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.observers.TestObserver;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.functions.Functions;
+import io.reactivex.rxjava3.observers.TestObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Verifies the operators handle null values properly by emitting/throwing NullPointerExceptions.

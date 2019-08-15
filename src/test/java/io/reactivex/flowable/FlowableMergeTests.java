@@ -21,9 +21,9 @@ import io.reactivex.RxJavaTest;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.Flowable;
 import io.reactivex.flowable.FlowableCovarianceTest.*;
-import io.reactivex.functions.Supplier;
+import io.reactivex.rxjava3.functions.Supplier;
 
 public class FlowableMergeTests extends RxJavaTest {
 

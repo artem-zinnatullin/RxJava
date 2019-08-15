@@ -15,10 +15,10 @@ package io.reactivex.observable;
 
 import java.util.*;
 
-import io.reactivex.Emitter;
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.Emitter;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Utility for retrieving a mock eventstream for testing.

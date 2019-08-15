@@ -16,10 +16,13 @@ package io.reactivex;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.Maybe;
+import io.reactivex.rxjava3.Observable;
 import org.openjdk.jmh.annotations.*;
 import org.reactivestreams.Publisher;
 
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.functions.*;
 
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 5)

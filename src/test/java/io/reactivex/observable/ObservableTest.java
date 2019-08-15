@@ -20,19 +20,20 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
+import io.reactivex.rxjava3.*;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.Observer;
 import org.junit.*;
 import org.mockito.InOrder;
 
 import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.*;
-import io.reactivex.functions.*;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.observables.ConnectableObservable;
-import io.reactivex.observers.*;
-import io.reactivex.schedulers.*;
-import io.reactivex.subjects.*;
+import io.reactivex.rxjava3.disposables.*;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.functions.Functions;
+import io.reactivex.rxjava3.observables.ConnectableObservable;
+import io.reactivex.rxjava3.observers.*;
+import io.reactivex.rxjava3.schedulers.*;
+import io.reactivex.rxjava3.subjects.*;
 import io.reactivex.testsupport.*;
 
 public class ObservableTest extends RxJavaTest {

@@ -18,14 +18,16 @@ import java.util.*;
 import java.util.concurrent.*;
 
 import static org.junit.Assert.*;
+
+import io.reactivex.rxjava3.*;
 import org.junit.*;
 import org.reactivestreams.*;
 
 import io.reactivex.*;
-import io.reactivex.exceptions.*;
-import io.reactivex.functions.*;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.exceptions.*;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.functions.Functions;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SingleNullTests extends RxJavaTest {
 
@@ -420,7 +422,7 @@ public class SingleNullTests extends RxJavaTest {
             for (int argNull = 1; argNull <= argCount; argNull++) {
                 Class<?>[] params = new Class[argCount + 1];
                 Arrays.fill(params, SingleSource.class);
-                Class<?> fniClass = Class.forName("io.reactivex.functions.Function" + argCount);
+                Class<?> fniClass = Class.forName("io.reactivex.rxjava3.functions.Function" + argCount);
                 params[argCount] = fniClass;
 
                 Object[] values = new Object[argCount + 1];
@@ -463,7 +465,7 @@ public class SingleNullTests extends RxJavaTest {
 
             Class<?>[] params = new Class[argCount + 1];
             Arrays.fill(params, SingleSource.class);
-            Class<?> fniClass = Class.forName("io.reactivex.functions.Function" + argCount);
+            Class<?> fniClass = Class.forName("io.reactivex.rxjava3.functions.Function" + argCount);
             params[argCount] = fniClass;
 
             Object[] values = new Object[argCount + 1];

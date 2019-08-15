@@ -20,9 +20,9 @@ import java.util.concurrent.atomic.*;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Observable;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.*;
 
 public class ObservableDoOnTest extends RxJavaTest {
 

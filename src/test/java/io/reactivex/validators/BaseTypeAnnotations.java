@@ -17,11 +17,11 @@ import static org.junit.Assert.fail;
 
 import java.lang.reflect.*;
 
+import io.reactivex.rxjava3.*;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 
-import io.reactivex.*;
-import io.reactivex.annotations.*;
+import io.reactivex.rxjava3.annotations.*;
 
 /**
  * Verifies several properties.

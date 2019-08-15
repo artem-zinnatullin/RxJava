@@ -17,12 +17,13 @@ import static org.mockito.Mockito.inOrder;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.Observer;
 import org.junit.Test;
 import org.mockito.InOrder;
 
 import io.reactivex.*;
-import io.reactivex.schedulers.TestScheduler;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.rxjava3.schedulers.TestScheduler;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.testsupport.TestHelper;
 
 public class ObservableThrottleLastTests extends RxJavaTest {

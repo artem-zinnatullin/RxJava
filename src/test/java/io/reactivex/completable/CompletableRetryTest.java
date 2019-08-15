@@ -13,11 +13,11 @@
 
 package io.reactivex.completable;
 
-import io.reactivex.Completable;
+import io.reactivex.rxjava3.Completable;
 import io.reactivex.RxJavaTest;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Predicate;
-import io.reactivex.internal.functions.Functions;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Predicate;
+import io.reactivex.rxjava3.internal.functions.Functions;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Test;
 

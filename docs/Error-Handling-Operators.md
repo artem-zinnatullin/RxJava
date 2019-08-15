@@ -23,7 +23,7 @@ There are a variety of operators that you can use to react to or recover from `o
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/do.html](http://reactivex.io/documentation/operators/do.html)
 
-Instructs a reactive type to invoke the given `io.reactivex.functions.Consumer` when it encounters an error.
+Instructs a reactive type to invoke the given `io.reactivex.rxjava3.functions.Consumer` when it encounters an error.
 
 ### doOnError example
 
@@ -44,7 +44,7 @@ Observable.error(new IOException("Something went wrong"))
 
 Instructs a reactive type to swallow an error event and replace it by a completion event.
 
-Optionally, a `io.reactivex.functions.Predicate` can be specified that gives more control over when an error event should be replaced by a completion event, and when not.
+Optionally, a `io.reactivex.rxjava3.functions.Predicate` can be specified that gives more control over when an error event should be replaced by a completion event, and when not.
 
 ### onErrorComplete example
 
@@ -103,7 +103,7 @@ numbers.scan(Math::multiplyExact)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/catch.html](http://reactivex.io/documentation/operators/catch.html)
 
-Instructs a reactive type to emit the item returned by the specified `io.reactivex.functions.Function` when it encounters an error.
+Instructs a reactive type to emit the item returned by the specified `io.reactivex.rxjava3.functions.Function` when it encounters an error.
 
 ### onErrorReturn example
 
@@ -207,7 +207,7 @@ source.retry((retryCount, error) -> retryCount < 3)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/retry.html](http://reactivex.io/documentation/operators/retry.html)
 
-Instructs a reactive type to resubscribe to the source reactive type if it encounters an error until the given `io.reactivex.functions.BooleanSupplier` returns `true`.
+Instructs a reactive type to resubscribe to the source reactive type if it encounters an error until the given `io.reactivex.rxjava3.functions.BooleanSupplier` returns `true`.
 
 ### retryUntil example
 

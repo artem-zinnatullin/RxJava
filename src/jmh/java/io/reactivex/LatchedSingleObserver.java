@@ -15,9 +15,10 @@ package io.reactivex;
 
 import java.util.concurrent.CountDownLatch;
 
+import io.reactivex.rxjava3.SingleObserver;
 import org.openjdk.jmh.infra.Blackhole;
 
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class LatchedSingleObserver<T> implements SingleObserver<T> {
     final CountDownLatch cdl;

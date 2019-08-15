@@ -21,11 +21,11 @@ import io.reactivex.RxJavaTest;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.Flowable;
 import io.reactivex.flowable.FlowableCovarianceTest.*;
 import io.reactivex.flowable.FlowableEventStream.Event;
-import io.reactivex.flowables.GroupedFlowable;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.flowables.GroupedFlowable;
+import io.reactivex.rxjava3.functions.*;
 
 public class FlowableZipTests extends RxJavaTest {
 

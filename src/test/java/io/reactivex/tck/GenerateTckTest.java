@@ -13,12 +13,13 @@
 
 package io.reactivex.tck;
 
+import io.reactivex.rxjava3.Emitter;
+import io.reactivex.rxjava3.Flowable;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.*;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.internal.functions.Functions;
+import io.reactivex.rxjava3.functions.BiFunction;
+import io.reactivex.rxjava3.internal.functions.Functions;
 
 @Test
 public class GenerateTckTest extends BaseTck<Long> {

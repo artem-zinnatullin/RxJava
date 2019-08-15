@@ -87,7 +87,7 @@ source.subscribeOn(Schedulers.io())
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/distinct.html](http://reactivex.io/documentation/operators/distinct.html)
 
-Filters a reactive source by only emitting items that are distinct by comparison from previous items. A `io.reactivex.functions.Function` can be specified that projects each item emitted by the source into a new value that will be used for comparison with previous projected values.
+Filters a reactive source by only emitting items that are distinct by comparison from previous items. A `io.reactivex.rxjava3.functions.Function` can be specified that projects each item emitted by the source into a new value that will be used for comparison with previous projected values.
 
 ### distinct example
 
@@ -109,7 +109,7 @@ Observable.just(2, 3, 4, 4, 2, 1)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/distinct.html](http://reactivex.io/documentation/operators/distinct.html)
 
-Filters a reactive source by only emitting items that are distinct by comparison from their immediate predecessors. A `io.reactivex.functions.Function` can be specified that projects each item emitted by the source into a new value that will be used for comparison with previous projected values. Alternatively, a `io.reactivex.functions.BiPredicate` can be specified that is used as the comparator function to compare immediate predecessors with each other.
+Filters a reactive source by only emitting items that are distinct by comparison from their immediate predecessors. A `io.reactivex.rxjava3.functions.Function` can be specified that projects each item emitted by the source into a new value that will be used for comparison with previous projected values. Alternatively, a `io.reactivex.rxjava3.functions.BiPredicate` can be specified that is used as the comparator function to compare immediate predecessors with each other.
 
 ### distinctUntilChanged example
 

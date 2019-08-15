@@ -23,10 +23,10 @@ import java.util.*;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.functions.*;
-import io.reactivex.observables.GroupedObservable;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.ObservableTransformer;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.observables.GroupedObservable;
 import io.reactivex.testsupport.TestObserverEx;
 
 /**

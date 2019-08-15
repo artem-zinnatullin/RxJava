@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.processors.ReplayProcessor;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.processors.ReplayProcessor;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @Test
 public class ReplayProcessorTimeBoundAsPublisherTckTest extends BaseTck<Integer> {

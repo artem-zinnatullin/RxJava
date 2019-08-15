@@ -22,9 +22,9 @@ import io.reactivex.RxJavaTest;
 import org.junit.Test;
 import org.reactivestreams.Subscriber;
 
-import io.reactivex.Flowable;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.DefaultSubscriber;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subscribers.DefaultSubscriber;
 
 public class FlowableErrorHandlingTests extends RxJavaTest {
 

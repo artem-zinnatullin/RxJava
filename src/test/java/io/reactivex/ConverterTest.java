@@ -15,10 +15,11 @@ package io.reactivex;
 
 import static org.junit.Assert.*;
 
+import io.reactivex.rxjava3.*;
 import org.junit.Test;
 
-import io.reactivex.exceptions.TestException;
-import io.reactivex.parallel.*;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.parallel.*;
 
 public final class ConverterTest extends RxJavaTest {
 

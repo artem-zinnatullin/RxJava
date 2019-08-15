@@ -20,7 +20,7 @@ import java.util.*;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.Observable;
 
 public class ObservableStartWithTests extends RxJavaTest {
 

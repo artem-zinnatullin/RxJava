@@ -16,10 +16,11 @@ package io.reactivex;
 import java.lang.management.ManagementFactory;
 import java.util.concurrent.Callable;
 
+import io.reactivex.rxjava3.*;
 import org.reactivestreams.Subscription;
 
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.*;
 
 /**
  * Measure various prepared flows about their memory usage and print the result
@@ -58,8 +59,8 @@ public final class MemoryPerf {
         }
     }
 
-    static final class MyRx2Observer implements io.reactivex.Observer<Object>, io.reactivex.SingleObserver<Object>,
-    io.reactivex.MaybeObserver<Object>, io.reactivex.CompletableObserver {
+    static final class MyRx2Observer implements Observer<Object>, SingleObserver<Object>,
+            MaybeObserver<Object>, CompletableObserver {
 
         Disposable upstream;
 
@@ -144,28 +145,28 @@ public final class MemoryPerf {
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.just(1);
+                return Observable.just(1);
             }
         }, "just", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.range(1, 10);
+                return Observable.range(1, 10);
             }
         }, "range", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.empty();
+                return Observable.empty();
             }
         }, "empty", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.fromCallable(new Callable<Object>() {
+                return Observable.fromCallable(new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
                         return 1;
@@ -184,28 +185,28 @@ public final class MemoryPerf {
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return new io.reactivex.observers.TestObserver<Object>();
+                return new io.reactivex.rxjava3.observers.TestObserver<Object>();
             }
         }, "test-consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.just(1).subscribeWith(new MyRx2Observer());
+                return Observable.just(1).subscribeWith(new MyRx2Observer());
             }
         }, "just+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.range(1, 10).subscribeWith(new MyRx2Observer());
+                return Observable.range(1, 10).subscribeWith(new MyRx2Observer());
             }
         }, "range+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.range(1, 10).map(new Function<Integer, Object>() {
+                return Observable.range(1, 10).map(new Function<Integer, Object>() {
                     @Override
                     public Object apply(Integer v) throws Exception {
                         return v;
@@ -217,7 +218,7 @@ public final class MemoryPerf {
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.range(1, 10).map(new Function<Integer, Object>() {
+                return Observable.range(1, 10).map(new Function<Integer, Object>() {
                     @Override
                     public Object apply(Integer v) throws Exception {
                         return v;
@@ -234,91 +235,91 @@ public final class MemoryPerf {
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.range(1, 10).subscribeOn(io.reactivex.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Observer());
+                return Observable.range(1, 10).subscribeOn(io.reactivex.rxjava3.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Observer());
             }
         }, "range+subscribeOn+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.range(1, 10).observeOn(io.reactivex.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Observer());
+                return Observable.range(1, 10).observeOn(io.reactivex.rxjava3.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Observer());
             }
         }, "range+observeOn+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Observable.range(1, 10).subscribeOn(io.reactivex.schedulers.Schedulers.computation()).observeOn(io.reactivex.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Observer());
+                return Observable.range(1, 10).subscribeOn(io.reactivex.rxjava3.schedulers.Schedulers.computation()).observeOn(io.reactivex.rxjava3.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Observer());
             }
         }, "range+subscribeOn+observeOn+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.AsyncSubject.create();
+                return io.reactivex.rxjava3.subjects.AsyncSubject.create();
             }
         }, "Async", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.PublishSubject.create();
+                return io.reactivex.rxjava3.subjects.PublishSubject.create();
             }
         }, "Publish", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.ReplaySubject.create();
+                return io.reactivex.rxjava3.subjects.ReplaySubject.create();
             }
         }, "Replay", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.BehaviorSubject.create();
+                return io.reactivex.rxjava3.subjects.BehaviorSubject.create();
             }
         }, "Behavior", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.UnicastSubject.create();
+                return io.reactivex.rxjava3.subjects.UnicastSubject.create();
             }
         }, "Unicast", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.AsyncSubject.create().subscribeWith(new MyRx2Observer());
+                return io.reactivex.rxjava3.subjects.AsyncSubject.create().subscribeWith(new MyRx2Observer());
             }
         }, "Async+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.PublishSubject.create().subscribeWith(new MyRx2Observer());
+                return io.reactivex.rxjava3.subjects.PublishSubject.create().subscribeWith(new MyRx2Observer());
             }
         }, "Publish+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.ReplaySubject.create().subscribeWith(new MyRx2Observer());
+                return io.reactivex.rxjava3.subjects.ReplaySubject.create().subscribeWith(new MyRx2Observer());
             }
         }, "Replay+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.BehaviorSubject.create().subscribeWith(new MyRx2Observer());
+                return io.reactivex.rxjava3.subjects.BehaviorSubject.create().subscribeWith(new MyRx2Observer());
             }
         }, "Behavior+consumer", "Rx2Observable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.subjects.UnicastSubject.create().subscribeWith(new MyRx2Observer());
+                return io.reactivex.rxjava3.subjects.UnicastSubject.create().subscribeWith(new MyRx2Observer());
             }
         }, "Unicast+consumer", "Rx2Observable");
 
@@ -327,35 +328,35 @@ public final class MemoryPerf {
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.just(1);
+                return Flowable.just(1);
             }
         }, "just", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.range(1, 10);
+                return Flowable.range(1, 10);
             }
         }, "range", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.empty();
+                return Flowable.empty();
             }
         }, "empty", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.empty();
+                return Flowable.empty();
             }
         }, "empty", "Rx2Flowable", 10000000);
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.fromCallable(new Callable<Object>() {
+                return Flowable.fromCallable(new Callable<Object>() {
                     @Override
                     public Object call() throws Exception {
                         return 1;
@@ -374,28 +375,28 @@ public final class MemoryPerf {
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return new io.reactivex.observers.TestObserver<Object>();
+                return new io.reactivex.rxjava3.observers.TestObserver<Object>();
             }
         }, "test-consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.just(1).subscribeWith(new MyRx2Subscriber());
+                return Flowable.just(1).subscribeWith(new MyRx2Subscriber());
             }
         }, "just+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.range(1, 10).subscribeWith(new MyRx2Subscriber());
+                return Flowable.range(1, 10).subscribeWith(new MyRx2Subscriber());
             }
         }, "range+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.range(1, 10).map(new Function<Integer, Object>() {
+                return Flowable.range(1, 10).map(new Function<Integer, Object>() {
                     @Override
                     public Object apply(Integer v) throws Exception {
                         return v;
@@ -407,7 +408,7 @@ public final class MemoryPerf {
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.range(1, 10).map(new Function<Integer, Object>() {
+                return Flowable.range(1, 10).map(new Function<Integer, Object>() {
                     @Override
                     public Object apply(Integer v) throws Exception {
                         return v;
@@ -424,91 +425,91 @@ public final class MemoryPerf {
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.range(1, 10).subscribeOn(io.reactivex.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Subscriber());
+                return Flowable.range(1, 10).subscribeOn(io.reactivex.rxjava3.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Subscriber());
             }
         }, "range+subscribeOn+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.range(1, 10).observeOn(io.reactivex.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Subscriber());
+                return Flowable.range(1, 10).observeOn(io.reactivex.rxjava3.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Subscriber());
             }
         }, "range+observeOn+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.Flowable.range(1, 10).subscribeOn(io.reactivex.schedulers.Schedulers.computation()).observeOn(io.reactivex.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Subscriber());
+                return Flowable.range(1, 10).subscribeOn(io.reactivex.rxjava3.schedulers.Schedulers.computation()).observeOn(io.reactivex.rxjava3.schedulers.Schedulers.computation()).subscribeWith(new MyRx2Subscriber());
             }
         }, "range+subscribeOn+observeOn+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.AsyncProcessor.create();
+                return io.reactivex.rxjava3.processors.AsyncProcessor.create();
             }
         }, "Async", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.PublishProcessor.create();
+                return io.reactivex.rxjava3.processors.PublishProcessor.create();
             }
         }, "Publish", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.ReplayProcessor.create();
+                return io.reactivex.rxjava3.processors.ReplayProcessor.create();
             }
         }, "Replay", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.BehaviorProcessor.create();
+                return io.reactivex.rxjava3.processors.BehaviorProcessor.create();
             }
         }, "Behavior", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.UnicastProcessor.create();
+                return io.reactivex.rxjava3.processors.UnicastProcessor.create();
             }
         }, "Unicast", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.AsyncProcessor.create().subscribeWith(new MyRx2Subscriber());
+                return io.reactivex.rxjava3.processors.AsyncProcessor.create().subscribeWith(new MyRx2Subscriber());
             }
         }, "Async+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.PublishProcessor.create().subscribeWith(new MyRx2Subscriber());
+                return io.reactivex.rxjava3.processors.PublishProcessor.create().subscribeWith(new MyRx2Subscriber());
             }
         }, "Publish+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.ReplayProcessor.create().subscribeWith(new MyRx2Subscriber());
+                return io.reactivex.rxjava3.processors.ReplayProcessor.create().subscribeWith(new MyRx2Subscriber());
             }
         }, "Replay+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.BehaviorProcessor.create().subscribeWith(new MyRx2Subscriber());
+                return io.reactivex.rxjava3.processors.BehaviorProcessor.create().subscribeWith(new MyRx2Subscriber());
             }
         }, "Behavior+consumer", "Rx2Flowable");
 
         checkMemory(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                return io.reactivex.processors.UnicastProcessor.create().subscribeWith(new MyRx2Subscriber());
+                return io.reactivex.rxjava3.processors.UnicastProcessor.create().subscribeWith(new MyRx2Subscriber());
             }
         }, "Unicast+consumer", "Rx2Flowable");
 

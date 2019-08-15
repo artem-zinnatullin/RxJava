@@ -15,9 +15,10 @@ package io.reactivex;
 
 import static org.junit.Assert.*;
 
+import io.reactivex.rxjava3.Notification;
 import org.junit.Test;
 
-import io.reactivex.exceptions.TestException;
+import io.reactivex.rxjava3.exceptions.TestException;
 
 public class NotificationTest extends RxJavaTest {
 
@@ -60,7 +61,7 @@ public class NotificationTest extends RxJavaTest {
     @Test
     public void toStringPattern() {
         assertEquals("OnNextNotification[1]", Notification.createOnNext(1).toString());
-        assertEquals("OnErrorNotification[io.reactivex.exceptions.TestException]", Notification.createOnError(new TestException()).toString());
+        assertEquals("OnErrorNotification[io.reactivex.rxjava3.exceptions.TestException]", Notification.createOnError(new TestException()).toString());
         assertEquals("OnCompleteNotification", Notification.createOnComplete().toString());
     }
 }

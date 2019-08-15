@@ -13,10 +13,10 @@
 
 package io.reactivex.tck;
 
+import io.reactivex.rxjava3.Completable;
+import io.reactivex.rxjava3.Flowable;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
-
-import io.reactivex.*;
 
 @Test
 public class ConcatWithCompletableTckTest extends BaseTck<Integer> {

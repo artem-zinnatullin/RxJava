@@ -15,8 +15,8 @@ package io.reactivex.testsupport;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Scheduler;
-import io.reactivex.disposables.*;
+import io.reactivex.rxjava3.Scheduler;
+import io.reactivex.rxjava3.disposables.*;
 
 /**
  * Basic scheduler that produces an ever increasing {@link #now(TimeUnit)} value.

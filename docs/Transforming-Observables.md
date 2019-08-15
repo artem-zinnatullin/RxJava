@@ -82,7 +82,7 @@ numbers.filter((Number x) -> Integer.class.isInstance(x))
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from concatenating the results of these function applications.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from concatenating the results of these function applications.
 
 ### concatMap example
 
@@ -104,7 +104,7 @@ Observable.range(0, 5)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.CompletableSource`, subscribes to them one at a time and returns a `Completable` that completes when all sources completed.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.CompletableSource`, subscribes to them one at a time and returns a `Completable` that completes when all sources completed.
 
 ### concatMapCompletable example
 
@@ -131,7 +131,7 @@ completable.doOnComplete(() -> System.out.println("Info: Processing of all items
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.CompletableSource`, subscribes to them one at a time and returns a `Completable` that completes when all sources completed. Any errors from the sources will be delayed until all of them terminate.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.CompletableSource`, subscribes to them one at a time and returns a `Completable` that completes when all sources completed. Any errors from the sources will be delayed until all of them terminate.
 
 ### concatMapCompletableDelayError example
 
@@ -162,7 +162,7 @@ completable.doOnError(error -> System.out.println("Error: " + error.getMessage()
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from concatenating the results of these function applications. Any errors from the sources will be delayed until all of them terminate.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from concatenating the results of these function applications. Any errors from the sources will be delayed until all of them terminate.
 
 ### concatMapDelayError example
 
@@ -190,7 +190,7 @@ Observable.intervalRange(1, 3, 0, 1, TimeUnit.SECONDS)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from concatenating the results of these function applications. Unlike [`concatMap`](#concatmap), this operator eagerly subscribes to all sources.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from concatenating the results of these function applications. Unlike [`concatMap`](#concatmap), this operator eagerly subscribes to all sources.
 
 ### concatMapEager example
 
@@ -224,7 +224,7 @@ Observable.range(0, 5)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from concatenating the results of these function applications. A `boolean` value must be specified, which if `true` indicates that all errors from all sources will be delayed until the end, otherwise if `false`, an error from the main source will be signalled when the current source terminates. Unlike [concatMapDelayError](#concatmapdelayerror), this operator eagerly subscribes to all sources.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from concatenating the results of these function applications. A `boolean` value must be specified, which if `true` indicates that all errors from all sources will be delayed until the end, otherwise if `false`, an error from the main source will be signalled when the current source terminates. Unlike [concatMapDelayError](#concatmapdelayerror), this operator eagerly subscribes to all sources.
 
 ### concatMapEagerDelayError example
 
@@ -259,7 +259,7 @@ source.doOnError(error -> System.out.println("Info: Error from main source " + e
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `java.lang.Iterable`, and emits the items that result from concatenating the results of these function applications.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `java.lang.Iterable`, and emits the items that result from concatenating the results of these function applications.
 
 ### concatMapIterable example
 
@@ -277,7 +277,7 @@ Observable.just("A", "B", "C")
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.MaybeSource`, and emits the items that result from concatenating these `MaybeSource`s.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.MaybeSource`, and emits the items that result from concatenating these `MaybeSource`s.
 
 ### concatMapMaybe example
 
@@ -305,7 +305,7 @@ Observable.just("5", "3,14", "2.71", "FF")
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.MaybeSource`, and emits the items that result from concatenating these `MaybeSource`s. Any errors from the sources will be delayed until all of them terminate.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.MaybeSource`, and emits the items that result from concatenating these `MaybeSource`s. Any errors from the sources will be delayed until all of them terminate.
 
 ### concatMapMaybeDelayError example
 
@@ -332,7 +332,7 @@ Observable.just("04.03.2018", "12-08-2018", "06.10.2018", "01.12.2018")
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.SingleSource`, and emits the items that result from concatenating these ``SingleSource`s.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.SingleSource`, and emits the items that result from concatenating these ``SingleSource`s.
 
 ### concatMapSingle example
 
@@ -362,7 +362,7 @@ Observable.just("5", "3,14", "2.71", "FF")
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.SingleSource`, and emits the items that result from concatenating the results of these function applications. Any errors from the sources will be delayed until all of them terminate.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.SingleSource`, and emits the items that result from concatenating the results of these function applications. Any errors from the sources will be delayed until all of them terminate.
 
 ### concatMapSingleDelayError example
 
@@ -389,7 +389,7 @@ Observable.just("24.03.2018", "12-08-2018", "06.10.2018", "01.12.2018")
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from merging the results of these function applications.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items that result from merging the results of these function applications.
 
 ### flatMap example
 
@@ -419,7 +419,7 @@ Observable.just("A", "B", "C")
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.CompletableSource`, and returns a `Completable` that completes when all sources completed.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.CompletableSource`, and returns a `Completable` that completes when all sources completed.
 
 ### flatMapCompletable example
 
@@ -446,7 +446,7 @@ completable.doOnComplete(() -> System.out.println("Info: Processing of all items
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `java.lang.Iterable`, and emits the elements from these `Iterable`s.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `java.lang.Iterable`, and emits the elements from these `Iterable`s.
 
 ### flatMapIterable example
 
@@ -481,7 +481,7 @@ Observable.just(1, 2, 3, 4)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.MaybeSource`, and emits the items that result from merging these `MaybeSource`s.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.MaybeSource`, and emits the items that result from merging these `MaybeSource`s.
 
 ### flatMapMaybe example
 
@@ -508,7 +508,7 @@ Observable.just(9.0, 16.0, -4.0)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to the item emitted by a `Maybe` or `Single`, where that function returns an `io.reactivex.ObservableSource`, and returns an `Observable` that emits the items emitted by this `ObservableSource`.
+Applies the given `io.reactivex.rxjava3.functions.Function` to the item emitted by a `Maybe` or `Single`, where that function returns an `io.reactivex.rxjava3.ObservableSource`, and returns an `Observable` that emits the items emitted by this `ObservableSource`.
 
 ### flatMapObservable example
 
@@ -534,7 +534,7 @@ names.subscribe(name -> System.out.println("onNext: " + name));
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to the item emitted by a `Maybe` or `Single`, where that function returns an `org.reactivestreams.Publisher`, and returns a `Flowable` that emits the items emitted by this `Publisher`.
+Applies the given `io.reactivex.rxjava3.functions.Function` to the item emitted by a `Maybe` or `Single`, where that function returns an `org.reactivestreams.Publisher`, and returns a `Flowable` that emits the items emitted by this `Publisher`.
 
 ### flatMapPublisher example
 
@@ -560,7 +560,7 @@ names.subscribe(name -> System.out.println("onNext: " + name));
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.SingleSource`, and emits the items that result from merging these `SingleSource`s.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a `io.reactivex.rxjava3.SingleSource`, and emits the items that result from merging these `SingleSource`s.
 
 ### flatMapSingle example
 
@@ -593,7 +593,7 @@ Use [`Maybe::flatMapSingleElement`](#flatmapsingleelement) -- which returns a `M
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to the item emitted by a `Maybe`, where that function returns a `io.reactivex.SingleSource`, and returns a `Maybe` that either emits the item emitted by this `SingleSource` or completes if the source `Maybe` just completes.
+Applies the given `io.reactivex.rxjava3.functions.Function` to the item emitted by a `Maybe`, where that function returns a `io.reactivex.rxjava3.SingleSource`, and returns a `Maybe` that either emits the item emitted by this `SingleSource` or completes if the source `Maybe` just completes.
 
 ### flatMapSingleElement example
 
@@ -614,7 +614,7 @@ result.subscribe(System.out::println);
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to the item emitted by a `Maybe` or `Single`, where that function returns a `java.lang.Iterable`, and returns a `Flowable` that emits the elements from this `Iterable`.
+Applies the given `io.reactivex.rxjava3.functions.Function` to the item emitted by a `Maybe` or `Single`, where that function returns a `java.lang.Iterable`, and returns a `Flowable` that emits the elements from this `Iterable`.
 
 ### flattenAsFlowable example
 
@@ -638,7 +638,7 @@ flowable.subscribe(x -> System.out.println("onNext: " + x));
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to the item emitted by a `Maybe` or `Single`, where that function returns a `java.lang.Iterable`, and returns an `Observable` that emits the elements from this `Iterable`.
+Applies the given `io.reactivex.rxjava3.functions.Function` to the item emitted by a `Maybe` or `Single`, where that function returns a `java.lang.Iterable`, and returns an `Observable` that emits the elements from this `Iterable`.
 
 ### flattenAsObservable example
 
@@ -687,7 +687,7 @@ animals.groupBy(animal -> animal.charAt(0), String::toUpperCase)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/map.html](http://reactivex.io/documentation/operators/map.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source and emits the results of these function applications.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source and emits the results of these function applications.
 
 ### map example
 
@@ -708,7 +708,7 @@ Observable.just(1, 2, 3)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/scan.html](http://reactivex.io/documentation/operators/scan.html)
 
-Applies the given `io.reactivex.functions.BiFunction` to a seed value and the first item emitted by a reactive source, then feeds the result of that function application along with the second item emitted by the reactive source into the same function, and so on until all items have been emitted by the reactive source, emitting each intermediate result.
+Applies the given `io.reactivex.rxjava3.functions.BiFunction` to a seed value and the first item emitted by a reactive source, then feeds the result of that function application along with the second item emitted by the reactive source into the same function, and so on until all items have been emitted by the reactive source, emitting each intermediate result.
 
 ### scan example
 
@@ -732,7 +732,7 @@ Observable.just(5, 3, 8, 1, 7)
 
 **ReactiveX documentation:** [http://reactivex.io/documentation/operators/flatmap.html](http://reactivex.io/documentation/operators/flatmap.html)
 
-Applies the given `io.reactivex.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items emitted by the most recently projected of these reactive sources.
+Applies the given `io.reactivex.rxjava3.functions.Function` to each item emitted by a reactive source, where that function returns a reactive source, and emits the items emitted by the most recently projected of these reactive sources.
 
 ### switchMap example
 

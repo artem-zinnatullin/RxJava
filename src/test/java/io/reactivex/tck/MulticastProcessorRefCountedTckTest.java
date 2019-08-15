@@ -19,8 +19,8 @@ import org.reactivestreams.*;
 import org.reactivestreams.tck.*;
 import org.testng.annotations.Test;
 
-import io.reactivex.exceptions.TestException;
-import io.reactivex.processors.*;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.processors.*;
 
 @Test
 public class MulticastProcessorRefCountedTckTest extends IdentityProcessorVerification<Integer> {

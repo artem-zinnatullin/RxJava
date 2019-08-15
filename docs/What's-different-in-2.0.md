@@ -80,9 +80,9 @@ source.subscribe(e -> { /* Ignored. */ }, Throwable::printStackTrace);
 
 A small regret about introducing backpressure in RxJava 0.x is that instead of having a separate base reactive class, the `Observable` itself was retrofitted. The main issue with backpressure is that many hot sources, such as UI events, can't be reasonably backpressured and cause unexpected `MissingBackpressureException` (i.e., beginners don't expect them).
 
-We try to remedy this situation in 2.x by having `io.reactivex.Observable` non-backpressured and the new `io.reactivex.Flowable` be the backpressure-enabled base reactive class.
+We try to remedy this situation in 2.x by having `io.reactivex.rxjava3.Observable` non-backpressured and the new `io.reactivex.rxjava3.Flowable` be the backpressure-enabled base reactive class.
 
-The good news is that operator names remain (mostly) the same. The bad news is that one should be careful when performing 'organize imports' as it may select the non-backpressured `io.reactivex.Observable` unintended.
+The good news is that operator names remain (mostly) the same. The bad news is that one should be careful when performing 'organize imports' as it may select the non-backpressured `io.reactivex.rxjava3.Observable` unintended.
 
 ## Which type to use?
 
@@ -105,7 +105,7 @@ When architecting dataflows (as an end-consumer of RxJava) or deciding upon what
 
 # Single
 
-The 2.x `Single` reactive base type, which can emit a single `onSuccess` or `onError` has been redesigned from scratch. Its architecture now derives from the Reactive-Streams design. Its consumer type (`rx.Single.SingleSubscriber<T>`) has been changed from being a class that accepts `rx.Subscription` resources to be an interface `io.reactivex.SingleObserver<T>` that has only 3 methods:
+The 2.x `Single` reactive base type, which can emit a single `onSuccess` or `onError` has been redesigned from scratch. Its architecture now derives from the Reactive-Streams design. Its consumer type (`rx.Single.SingleSubscriber<T>`) has been changed from being a class that accepts `rx.Subscription` resources to be an interface `io.reactivex.rxjava3.SingleObserver<T>` that has only 3 methods:
 
 ```java
 interface SingleObserver<T> {
@@ -121,7 +121,7 @@ and follows the protocol `onSubscribe (onSuccess | onError)?`.
 
 The `Completable` type remains largely the same. It was already designed along the Reactive-Streams style for 1.x so no user-level changes there.
 
-Similar to the naming changes, `rx.Completable.CompletableSubscriber` has become `io.reactivex.CompletableObserver` with `onSubscribe(Disposable)`:
+Similar to the naming changes, `rx.Completable.CompletableSubscriber` has become `io.reactivex.rxjava3.CompletableObserver` with `onSubscribe(Disposable)`:
 
 ```java
 interface CompletableObserver<T> {
@@ -199,9 +199,9 @@ source.compose((Flowable<T> flowable) ->
 
 In the Reactive-Streams specification, the `Subject`-like behavior, namely being a consumer and supplier of events at the same time, is done by the `org.reactivestreams.Processor` interface. As with the `Observable`/`Flowable` split, the backpressure-aware, Reactive-Streams compliant implementations are based on the `FlowableProcessor<T>` class (which extends `Flowable` to give a rich set of instance operators). An important change regarding `Subject`s (and by extension, `FlowableProcessor`) that they no longer support `T -> R` like conversion (that is, input is of type `T` and the output is of type `R`). (We never had a use for it in 1.x and the original `Subject<T, R>` came from .NET where there is a `Subject<T>` overload because .NET allows the same class name with a different number of type arguments.)
 
-The `io.reactivex.subjects.AsyncSubject`, `io.reactivex.subjects.BehaviorSubject`, `io.reactivex.subjects.PublishSubject`, `io.reactivex.subjects.ReplaySubject` and `io.reactivex.subjects.UnicastSubject` in 2.x don't support backpressure (as part of the 2.x `Observable` family).
+The `io.reactivex.rxjava3.subjects.AsyncSubject`, `io.reactivex.rxjava3.subjects.BehaviorSubject`, `io.reactivex.rxjava3.subjects.PublishSubject`, `io.reactivex.rxjava3.subjects.ReplaySubject` and `io.reactivex.rxjava3.subjects.UnicastSubject` in 2.x don't support backpressure (as part of the 2.x `Observable` family).
 
-The `io.reactivex.processors.AsyncProcessor`, `io.reactivex.processors.BehaviorProcessor`, `io.reactivex.processors.PublishProcessor`, `io.reactivex.processors.ReplayProcessor` and `io.reactivex.processors.UnicastProcessor` are backpressure-aware. The `BehaviorProcessor` and `PublishProcessor` don't coordinate requests (use `Flowable.publish()` for that) of their downstream subscribers and will signal them `MissingBackpressureException` if the downstream can't keep up. The other `XProcessor` types honor backpressure of their downstream subscribers but otherwise, when subscribed to a source (optional), they consume it in an unbounded manner (requesting `Long.MAX_VALUE`). 
+The `io.reactivex.rxjava3.processors.AsyncProcessor`, `io.reactivex.rxjava3.processors.BehaviorProcessor`, `io.reactivex.rxjava3.processors.PublishProcessor`, `io.reactivex.rxjava3.processors.ReplayProcessor` and `io.reactivex.rxjava3.processors.UnicastProcessor` are backpressure-aware. The `BehaviorProcessor` and `PublishProcessor` don't coordinate requests (use `Flowable.publish()` for that) of their downstream subscribers and will signal them `MissingBackpressureException` if the downstream can't keep up. The other `XProcessor` types honor backpressure of their downstream subscribers but otherwise, when subscribed to a source (optional), they consume it in an unbounded manner (requesting `Long.MAX_VALUE`).
 
 ## TestSubject
 
@@ -233,11 +233,11 @@ The `SerializedSubject` is no longer a public class. You have to use `Subject.to
 
 # Other classes
 
-The `rx.observables.ConnectableObservable` is now `io.reactivex.observables.ConnectableObservable<T>` and `io.reactivex.flowables.ConnectableFlowable<T>`.
+The `rx.observables.ConnectableObservable` is now `io.reactivex.rxjava3.observables.ConnectableObservable<T>` and `io.reactivex.rxjava3.flowables.ConnectableFlowable<T>`.
 
 ## GroupedObservable
 
-The `rx.observables.GroupedObservable` is now `io.reactivex.observables.GroupedObservable<T>` and `io.reactivex.flowables.GroupedFlowable<T>`.
+The `rx.observables.GroupedObservable` is now `io.reactivex.rxjava3.observables.GroupedObservable<T>` and `io.reactivex.rxjava3.flowables.GroupedFlowable<T>`.
 
 In 1.x, you could create an instance with `GroupedObservable.from()` which was used internally by 1.x. In 2.x, all use cases now extend `GroupedObservable` directly thus the factory methods are no longer available; the whole class is now abstract.
 
@@ -286,11 +286,11 @@ If the file doesn't exist or can't be read properly, the end consumer will print
 
 As the opportunity to reduce component count, 2.x doesn't define `Action3`-`Action9` and `ActionN` (these were unused within RxJava itself anyway). 
 
-The remaining action interfaces were named according to the Java 8 functional types. The no argument `Action0` is replaced by the `io.reactivex.functions.Action` for the operators and `java.lang.Runnable` for the `Scheduler` methods. `Action1` has been renamed to `Consumer` and `Action2` is called `BiConsumer`. `ActionN` is replaced by the `Consumer<Object[]>` type declaration.
+The remaining action interfaces were named according to the Java 8 functional types. The no argument `Action0` is replaced by the `io.reactivex.rxjava3.functions.Action` for the operators and `java.lang.Runnable` for the `Scheduler` methods. `Action1` has been renamed to `Consumer` and `Action2` is called `BiConsumer`. `ActionN` is replaced by the `Consumer<Object[]>` type declaration.
 
 ## Functions
 
-We followed the naming convention of Java 8 by defining `io.reactivex.functions.Function` and `io.reactivex.functions.BiFunction`, plus renaming `Func3` - `Func9` into `Function3` - `Function9` respectively. The `FuncN` is replaced by the `Function<Object[], R>` type declaration.
+We followed the naming convention of Java 8 by defining `io.reactivex.rxjava3.functions.Function` and `io.reactivex.rxjava3.functions.BiFunction`, plus renaming `Func3` - `Func9` into `Function3` - `Function9` respectively. The `FuncN` is replaced by the `Function<Object[], R>` type declaration.
 
 In addition, operators requiring a predicate no longer use `Func1<T, Boolean>` but have a separate, primitive-returning type of `Predicate<T>` (allows better inlining due to no autoboxing).
 
@@ -448,7 +448,7 @@ As an alternative, the 2.x `Observable` doesn't do backpressure at all and is av
 
 Before 2.0.7, the operator `strict()` had to be applied in order to achieve the same level of compliance. In 2.0.7, the operator `strict()` returns `this`, is deprecated and will be removed completely in 2.1.0.
 
-As one of the primary goals of RxJava 2, the design focuses on performance and in order enable it, RxJava 2.0.7 adds a custom `io.reactivex.FlowableSubscriber` interface (extends `org.reactivestreams.Subscriber`) but adds no new methods to it. The new interface is **constrained to RxJava 2** and represents a consumer to `Flowable` that is able to work in a mode that relaxes the Reactive-Streams version 1.0.0 specification in rules §1.3, §2.3, §2.12 and §3.9:
+As one of the primary goals of RxJava 2, the design focuses on performance and in order enable it, RxJava 2.0.7 adds a custom `io.reactivex.rxjava3.FlowableSubscriber` interface (extends `org.reactivestreams.Subscriber`) but adds no new methods to it. The new interface is **constrained to RxJava 2** and represents a consumer to `Flowable` that is able to work in a mode that relaxes the Reactive-Streams version 1.0.0 specification in rules §1.3, §2.3, §2.12 and §3.9:
 
   - §1.3 relaxation: `onSubscribe` may run concurrently with `onNext` in case the `FlowableSubscriber` calls `request()` from inside `onSubscribe` and it is the resposibility of `FlowableSubscriber` to ensure thread-safety between the remaining instructions in `onSubscribe` and `onNext`.
   - §2.3 relaxation: calling `Subscription.cancel` and `Subscription.request` from `FlowableSubscriber.onComplete()` or `FlowableSubscriber.onError()` is considered a no-operation.
@@ -547,13 +547,13 @@ RxJavaPlugins.setErrorHandler(e -> {
 
 # Schedulers
 
-The 2.x API still supports the main default scheduler types: `computation`, `io`, `newThread` and `trampoline`, accessible through `io.reactivex.schedulers.Schedulers` utility class. 
+The 2.x API still supports the main default scheduler types: `computation`, `io`, `newThread` and `trampoline`, accessible through `io.reactivex.rxjava3.schedulers.Schedulers` utility class.
 
 The `immediate` scheduler is not present in 2.x. It was frequently misused and didn't implement the `Scheduler` specification correctly anyway; it contained blocking sleep for delayed action and didn't support recursive scheduling at all. Use `Schedulers.trampoline()` instead.
 
 The `Schedulers.test()` has been removed as well to avoid the conceptional difference with the rest of the default schedulers. Those return a "global" scheduler instance whereas `test()` returned always a new instance of the `TestScheduler`. Test developers are now encouraged to simply `new TestScheduler()` in their code.
 
-The `io.reactivex.Scheduler` abstract base class now supports scheduling tasks directly without the need to create and then destroy a `Worker` (which is often forgotten):
+The `io.reactivex.rxjava3.Scheduler` abstract base class now supports scheduling tasks directly without the need to create and then destroy a `Worker` (which is often forgotten):
 
 ```java
 public abstract class Scheduler {
@@ -650,7 +650,7 @@ Flowable.just(1)
 
 # Testing
 
-Testing RxJava 2.x works the same way as it does in 1.x. `Flowable` can be tested with `io.reactivex.subscribers.TestSubscriber` whereas the non-backpressured `Observable`, `Single`, `Maybe` and `Completable` can be tested with `io.reactivex.observers.TestObserver`.
+Testing RxJava 2.x works the same way as it does in 1.x. `Flowable` can be tested with `io.reactivex.rxjava3.subscribers.TestSubscriber` whereas the non-backpressured `Observable`, `Single`, `Maybe` and `Completable` can be tested with `io.reactivex.rxjava3.observers.TestObserver`.
 
 ## test() "operator"
 

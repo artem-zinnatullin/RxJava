@@ -15,10 +15,12 @@ package io.reactivex.observable;
 
 import static org.junit.Assert.*;
 
+import io.reactivex.rxjava3.Maybe;
+import io.reactivex.rxjava3.Observable;
 import org.junit.Test;
 
 import io.reactivex.*;
-import io.reactivex.functions.BiFunction;
+import io.reactivex.rxjava3.functions.BiFunction;
 import io.reactivex.observable.ObservableCovarianceTest.*;
 
 public class ObservableReduceTests extends RxJavaTest {

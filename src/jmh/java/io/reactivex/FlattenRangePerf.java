@@ -16,10 +16,12 @@ package io.reactivex;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.Observable;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.functions.Function;
 
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 5)
@@ -33,7 +35,7 @@ public class FlattenRangePerf {
 
     Flowable<Integer> flowable;
 
-    Observable<Integer> observable;
+    io.reactivex.rxjava3.Observable<Integer> observable;
 
     @Setup
     public void setup() {

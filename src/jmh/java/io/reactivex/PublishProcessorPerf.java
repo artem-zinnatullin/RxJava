@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
-import io.reactivex.processors.PublishProcessor;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.rxjava3.processors.PublishProcessor;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 5)

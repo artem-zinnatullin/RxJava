@@ -15,6 +15,7 @@ package io.reactivex;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.*;
 import org.openjdk.jmh.annotations.*;
 
 @BenchmarkMode(Mode.Throughput)

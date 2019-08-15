@@ -16,8 +16,8 @@ package io.reactivex.tck;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.processors.MulticastProcessor;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.processors.MulticastProcessor;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @Test
 public class MulticastProcessorAsPublisherTckTest extends BaseTck<Integer> {

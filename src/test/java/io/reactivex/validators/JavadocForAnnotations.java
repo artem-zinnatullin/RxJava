@@ -17,9 +17,9 @@ import static org.junit.Assert.fail;
 
 import java.io.*;
 
+import io.reactivex.rxjava3.*;
 import org.junit.*;
 
-import io.reactivex.*;
 import io.reactivex.testsupport.TestHelper;
 
 /**

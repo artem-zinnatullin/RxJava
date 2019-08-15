@@ -21,24 +21,25 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.reactivex.rxjava3.*;
+import io.reactivex.rxjava3.Observable;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 
 import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.disposables.*;
-import io.reactivex.exceptions.*;
-import io.reactivex.functions.*;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.internal.fuseable.QueueFuseable;
-import io.reactivex.internal.operators.flowable.FlowableZipTest.ArgsToString;
-import io.reactivex.internal.operators.maybe.*;
-import io.reactivex.observers.TestObserver;
-import io.reactivex.plugins.RxJavaPlugins;
-import io.reactivex.processors.PublishProcessor;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
-import io.reactivex.subscribers.TestSubscriber;
+import io.reactivex.rxjava3.disposables.*;
+import io.reactivex.rxjava3.exceptions.*;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.functions.Functions;
+import io.reactivex.rxjava3.internal.fuseable.QueueFuseable;
+import io.reactivex.rxjava3.internal.operators.flowable.FlowableZipTest.ArgsToString;
+import io.reactivex.rxjava3.internal.operators.maybe.*;
+import io.reactivex.rxjava3.observers.TestObserver;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+import io.reactivex.rxjava3.processors.PublishProcessor;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.PublishSubject;
+import io.reactivex.rxjava3.subscribers.TestSubscriber;
 import io.reactivex.testsupport.*;
 
 public class MaybeTest extends RxJavaTest {

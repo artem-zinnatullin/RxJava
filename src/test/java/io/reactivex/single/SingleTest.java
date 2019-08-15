@@ -19,16 +19,17 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
+import io.reactivex.rxjava3.*;
+import io.reactivex.rxjava3.Observable;
 import org.junit.*;
 
 import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.disposables.*;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.*;
-import io.reactivex.internal.operators.single.SingleInternalHelper;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.TestSubscriber;
+import io.reactivex.rxjava3.disposables.*;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.operators.single.SingleInternalHelper;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subscribers.TestSubscriber;
 import io.reactivex.testsupport.*;
 
 public class SingleTest extends RxJavaTest {

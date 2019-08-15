@@ -17,16 +17,19 @@ import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.*;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.FlowableConverter;
+import io.reactivex.rxjava3.FlowableOperator;
 import org.junit.*;
 import org.reactivestreams.*;
 
 import io.reactivex.*;
-import io.reactivex.functions.*;
-import io.reactivex.internal.operators.flowable.*;
-import io.reactivex.internal.util.ExceptionHelper;
-import io.reactivex.observers.*;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.DefaultSubscriber;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.operators.flowable.*;
+import io.reactivex.rxjava3.internal.util.ExceptionHelper;
+import io.reactivex.rxjava3.observers.*;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subscribers.DefaultSubscriber;
 
 public class FlowableConversionTest extends RxJavaTest {
 

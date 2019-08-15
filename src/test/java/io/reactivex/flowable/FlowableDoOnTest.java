@@ -17,11 +17,12 @@ import static org.junit.Assert.*;
 
 import java.util.concurrent.atomic.*;
 
+import io.reactivex.rxjava3.Flowable;
 import org.junit.Test;
 
 import io.reactivex.*;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.*;
 
 public class FlowableDoOnTest extends RxJavaTest {
 

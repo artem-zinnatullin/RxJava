@@ -16,11 +16,11 @@ package io.reactivex.single;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Single;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.observers.TestObserver;
-import io.reactivex.subjects.PublishSubject;
-import io.reactivex.subscribers.TestSubscriber;
+import io.reactivex.rxjava3.Single;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.observers.TestObserver;
+import io.reactivex.rxjava3.subjects.PublishSubject;
+import io.reactivex.rxjava3.subscribers.TestSubscriber;
 
 public class SingleCacheTest extends RxJavaTest {
 

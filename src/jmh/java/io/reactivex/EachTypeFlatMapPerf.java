@@ -15,11 +15,14 @@ package io.reactivex;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.Single;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.reactivestreams.Publisher;
 
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.functions.Function;
 
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 5)

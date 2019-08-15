@@ -17,13 +17,14 @@ import static org.mockito.Mockito.inOrder;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.Flowable;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.reactivestreams.Subscriber;
 
 import io.reactivex.*;
-import io.reactivex.processors.PublishProcessor;
-import io.reactivex.schedulers.TestScheduler;
+import io.reactivex.rxjava3.processors.PublishProcessor;
+import io.reactivex.rxjava3.schedulers.TestScheduler;
 import io.reactivex.testsupport.TestHelper;
 
 public class FlowableThrottleWithTimeoutTests extends RxJavaTest {

@@ -15,16 +15,17 @@ package io.reactivex;
 
 import java.util.concurrent.*;
 
+import io.reactivex.rxjava3.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.reactivestreams.*;
 
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * A multi-type asynchronous consumer.
  */
 public final class PerfAsyncConsumer extends CountDownLatch implements FlowableSubscriber<Object>, Observer<Object>,
-SingleObserver<Object>, CompletableObserver, MaybeObserver<Object> {
+        SingleObserver<Object>, CompletableObserver, MaybeObserver<Object> {
 
     final Blackhole bh;
 

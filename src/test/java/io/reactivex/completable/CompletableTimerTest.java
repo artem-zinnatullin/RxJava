@@ -19,9 +19,9 @@ import org.junit.Test;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import io.reactivex.Completable;
-import io.reactivex.functions.Action;
-import io.reactivex.schedulers.TestScheduler;
+import io.reactivex.rxjava3.Completable;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.schedulers.TestScheduler;
 
 import static org.junit.Assert.assertEquals;
 

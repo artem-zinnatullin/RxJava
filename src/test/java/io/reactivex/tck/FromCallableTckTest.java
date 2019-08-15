@@ -18,8 +18,8 @@ import java.util.concurrent.Callable;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.Flowable;
-import io.reactivex.exceptions.TestException;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.exceptions.TestException;
 
 @Test
 public class FromCallableTckTest extends BaseTck<Long> {

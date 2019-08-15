@@ -18,8 +18,8 @@ package io.reactivex.observable;
 import io.reactivex.RxJavaTest;
 import org.junit.*;
 
-import io.reactivex.Observable;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.functions.*;
 import io.reactivex.observable.ObservableCovarianceTest.*;
 
 public class ObservableCombineLatestTests extends RxJavaTest {

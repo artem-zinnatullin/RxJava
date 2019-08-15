@@ -16,10 +16,12 @@ package io.reactivex;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.Completable;
+import io.reactivex.rxjava3.Flowable;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
-import io.reactivex.internal.functions.Functions;
+import io.reactivex.rxjava3.internal.functions.Functions;
 
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 5)

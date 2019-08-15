@@ -21,20 +21,22 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.FlowableSubscriber;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.mockito.InOrder;
 import org.reactivestreams.*;
 
 import io.reactivex.*;
-import io.reactivex.Scheduler.Worker;
-import io.reactivex.exceptions.*;
-import io.reactivex.functions.*;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.internal.fuseable.QueueFuseable;
-import io.reactivex.internal.subscriptions.*;
-import io.reactivex.processors.*;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.Scheduler.Worker;
+import io.reactivex.rxjava3.exceptions.*;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.functions.Functions;
+import io.reactivex.rxjava3.internal.fuseable.QueueFuseable;
+import io.reactivex.rxjava3.internal.subscriptions.*;
+import io.reactivex.rxjava3.processors.*;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class TestSubscriberExTest extends RxJavaTest {
 

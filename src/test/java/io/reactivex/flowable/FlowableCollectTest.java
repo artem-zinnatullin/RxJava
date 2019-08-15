@@ -13,19 +13,21 @@
 
 package io.reactivex.flowable;
 
-import static io.reactivex.internal.util.TestingHelper.*;
+import static io.reactivex.rxjava3.internal.util.TestingHelper.*;
 import static org.junit.Assert.*;
 
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.Single;
 import org.junit.Test;
 
 import io.reactivex.*;
-import io.reactivex.functions.*;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.plugins.RxJavaPlugins;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.functions.Functions;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import io.reactivex.testsupport.TestHelper;
 
 public final class FlowableCollectTest extends RxJavaTest {

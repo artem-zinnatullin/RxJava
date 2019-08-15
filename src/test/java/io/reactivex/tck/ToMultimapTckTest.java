@@ -18,8 +18,8 @@ import java.util.*;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.Flowable;
-import io.reactivex.internal.functions.Functions;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.internal.functions.Functions;
 
 @Test
 public class ToMultimapTckTest extends BaseTck<Map<Integer, Collection<Integer>>> {

@@ -17,9 +17,8 @@ import static org.junit.Assert.fail;
 
 import java.lang.reflect.*;
 
+import io.reactivex.rxjava3.*;
 import org.junit.Test;
-
-import io.reactivex.*;
 
 /**
  * Verifies that instance methods of the base reactive classes are all declared final.

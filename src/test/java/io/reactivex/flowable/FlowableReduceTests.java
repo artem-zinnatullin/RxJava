@@ -15,11 +15,13 @@ package io.reactivex.flowable;
 
 import static org.junit.Assert.*;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.Maybe;
 import org.junit.Test;
 
 import io.reactivex.*;
 import io.reactivex.flowable.FlowableCovarianceTest.*;
-import io.reactivex.functions.BiFunction;
+import io.reactivex.rxjava3.functions.BiFunction;
 
 public class FlowableReduceTests extends RxJavaTest {
 

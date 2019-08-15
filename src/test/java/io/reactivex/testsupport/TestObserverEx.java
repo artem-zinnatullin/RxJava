@@ -14,10 +14,13 @@ package io.reactivex.testsupport;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import io.reactivex.*;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.internal.disposables.DisposableHelper;
-import io.reactivex.internal.fuseable.*;
+import io.reactivex.rxjava3.CompletableObserver;
+import io.reactivex.rxjava3.MaybeObserver;
+import io.reactivex.rxjava3.Observer;
+import io.reactivex.rxjava3.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.internal.disposables.DisposableHelper;
+import io.reactivex.rxjava3.internal.fuseable.*;
 
 /**
  * An  extended test Observer that records events and allows making assertions about them.

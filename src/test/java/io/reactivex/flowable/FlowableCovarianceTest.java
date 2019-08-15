@@ -20,12 +20,14 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.*;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.FlowableTransformer;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 
 import io.reactivex.*;
-import io.reactivex.flowables.GroupedFlowable;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.flowables.GroupedFlowable;
+import io.reactivex.rxjava3.functions.*;
 import io.reactivex.testsupport.TestSubscriberEx;
 
 /**

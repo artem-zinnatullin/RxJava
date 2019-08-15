@@ -18,15 +18,16 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.concurrent.CyclicBarrier;
 
+import io.reactivex.rxjava3.*;
 import org.junit.*;
 import org.reactivestreams.Publisher;
 
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.Function;
-import io.reactivex.observers.*;
-import io.reactivex.plugins.RxJavaPlugins;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.TestSubscriber;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.observers.*;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subscribers.TestSubscriber;
 import io.reactivex.testsupport.TestHelper;
 
 public class XFlatMapTest extends RxJavaTest {

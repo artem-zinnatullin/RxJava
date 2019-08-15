@@ -16,11 +16,13 @@ package io.reactivex;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.*;
+import io.reactivex.rxjava3.Observable;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.reactivestreams.Publisher;
 
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.functions.Function;
 
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 5)
@@ -64,35 +66,35 @@ public class XMapYPerf {
 
     // -----------------------------------------------------------------
 
-    Observable<Integer> obsFlatMapIterable0;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapIterable0;
 
-    Observable<Integer> obsFlatMapIterable1;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapIterable1;
 
-    Observable<Integer> obsFlatMapObservable0;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapObservable0;
 
-    Observable<Integer> obsFlatMapObservable1;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapObservable1;
 
-    Observable<Integer> obsFlatMapSingle1;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapSingle1;
 
-    Observable<Integer> obsFlatMapMaybe1;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapMaybe1;
 
-    Observable<Integer> obsFlatMapMaybe0;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapMaybe0;
 
     Completable obsFlatMapCompletable0;
 
     // oooooooooooooooooooooooooooooooooooooooooo
 
-    Observable<Integer> obsFlatMapSingleAsObs1;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapSingleAsObs1;
 
-    Observable<Integer> obsFlatMapMaybeAsObs1;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapMaybeAsObs1;
 
-    Observable<Integer> obsFlatMapMaybeAsObs0;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapMaybeAsObs0;
 
-    Observable<Integer> obsFlatMapCompletableAsObs0;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapCompletableAsObs0;
 
-    Observable<Integer> obsFlatMapIterableAsObs1;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapIterableAsObs1;
 
-    Observable<Integer> obsFlatMapIterableAsObs0;
+    io.reactivex.rxjava3.Observable<Integer> obsFlatMapIterableAsObs0;
 
     @Setup
     public void setup() {
@@ -231,19 +233,19 @@ public class XMapYPerf {
 
         // -------------------------------------------------------------------
 
-        Observable<Integer> osource = Observable.fromArray(values);
+        io.reactivex.rxjava3.Observable<Integer> osource = io.reactivex.rxjava3.Observable.fromArray(values);
 
-        obsFlatMapObservable1 = osource.flatMap(new Function<Integer, Observable<Integer>>() {
+        obsFlatMapObservable1 = osource.flatMap(new Function<Integer, io.reactivex.rxjava3.Observable<Integer>>() {
             @Override
-            public Observable<Integer> apply(Integer v) throws Exception {
-                return Observable.just(v);
+            public io.reactivex.rxjava3.Observable<Integer> apply(Integer v) throws Exception {
+                return io.reactivex.rxjava3.Observable.just(v);
             }
         });
 
-        obsFlatMapObservable0 = osource.flatMap(new Function<Integer, Observable<Integer>>() {
+        obsFlatMapObservable0 = osource.flatMap(new Function<Integer, io.reactivex.rxjava3.Observable<Integer>>() {
             @Override
-            public Observable<Integer> apply(Integer v) throws Exception {
-                return Observable.empty();
+            public io.reactivex.rxjava3.Observable<Integer> apply(Integer v) throws Exception {
+                return io.reactivex.rxjava3.Observable.empty();
             }
         });
 
@@ -293,43 +295,43 @@ public class XMapYPerf {
 
         obsFlatMapSingleAsObs1 = osource.flatMap(new Function<Integer, Observable<Integer>>() {
             @Override
-            public Observable<Integer> apply(Integer v) throws Exception {
+            public io.reactivex.rxjava3.Observable<Integer> apply(Integer v) throws Exception {
                 return Single.just(v).toObservable();
             }
         });
 
-        obsFlatMapMaybeAsObs1 = osource.flatMap(new Function<Integer, Observable<Integer>>() {
+        obsFlatMapMaybeAsObs1 = osource.flatMap(new Function<Integer, io.reactivex.rxjava3.Observable<Integer>>() {
             @Override
-            public Observable<Integer> apply(Integer v) throws Exception {
+            public io.reactivex.rxjava3.Observable<Integer> apply(Integer v) throws Exception {
                 return Maybe.just(v).toObservable();
             }
         });
 
-        obsFlatMapMaybeAsObs0 = osource.flatMap(new Function<Integer, Observable<Integer>>() {
+        obsFlatMapMaybeAsObs0 = osource.flatMap(new Function<Integer, io.reactivex.rxjava3.Observable<Integer>>() {
             @Override
-            public Observable<Integer> apply(Integer v) throws Exception {
+            public io.reactivex.rxjava3.Observable<Integer> apply(Integer v) throws Exception {
                 return Maybe.<Integer>empty().toObservable();
             }
         });
 
-        obsFlatMapCompletableAsObs0 = osource.flatMap(new Function<Integer, Observable<Integer>>() {
+        obsFlatMapCompletableAsObs0 = osource.flatMap(new Function<Integer, io.reactivex.rxjava3.Observable<Integer>>() {
             @Override
-            public Observable<Integer> apply(Integer v) throws Exception {
+            public io.reactivex.rxjava3.Observable<Integer> apply(Integer v) throws Exception {
                 return Completable.complete().<Integer>toObservable();
             }
         });
 
-        obsFlatMapIterableAsObs1 = osource.flatMap(new Function<Integer, Observable<Integer>>() {
+        obsFlatMapIterableAsObs1 = osource.flatMap(new Function<Integer, io.reactivex.rxjava3.Observable<Integer>>() {
             @Override
-            public Observable<Integer> apply(Integer v) throws Exception {
-                return Observable.fromIterable(Collections.singletonList(v));
+            public io.reactivex.rxjava3.Observable<Integer> apply(Integer v) throws Exception {
+                return io.reactivex.rxjava3.Observable.fromIterable(Collections.singletonList(v));
             }
         });
 
-        obsFlatMapIterableAsObs0 = osource.flatMap(new Function<Integer, Observable<Integer>>() {
+        obsFlatMapIterableAsObs0 = osource.flatMap(new Function<Integer, io.reactivex.rxjava3.Observable<Integer>>() {
             @Override
-            public Observable<Integer> apply(Integer v) throws Exception {
-                return Observable.fromIterable(Collections.<Integer>emptyList());
+            public io.reactivex.rxjava3.Observable<Integer> apply(Integer v) throws Exception {
+                return io.reactivex.rxjava3.Observable.fromIterable(Collections.<Integer>emptyList());
             }
         });
     }

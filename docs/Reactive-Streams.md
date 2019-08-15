@@ -100,7 +100,7 @@ The RxJava 2.x wrapper would differ like this (once 2.x is available):
 package com.database.driver.rxjava2;
 
 public class Database {
-    public io.reactivex.Observable getValue(String key);
+    public io.reactivex.rxjava3.Observable getValue(String key);
 }
 ```
 

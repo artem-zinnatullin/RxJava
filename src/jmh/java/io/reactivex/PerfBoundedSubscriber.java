@@ -15,6 +15,7 @@ package io.reactivex;
 
 import java.util.concurrent.CountDownLatch;
 
+import io.reactivex.rxjava3.FlowableSubscriber;
 import org.openjdk.jmh.infra.Blackhole;
 import org.reactivestreams.Subscription;
 

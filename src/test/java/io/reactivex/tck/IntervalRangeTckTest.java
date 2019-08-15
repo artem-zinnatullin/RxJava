@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.Flowable;
 
 @Test
 public class IntervalRangeTckTest extends BaseTck<Long> {

@@ -49,7 +49,7 @@ public class OperatorsAreFinal {
         if (files != null) {
             for (File g : files) {
                 if (g.getName().startsWith(baseClassName) && g.getName().endsWith(".java")) {
-                    String className = "io.reactivex.internal.operators." + baseClassName.toLowerCase() + "." + g.getName().replace(".java", "");
+                    String className = "io.reactivex.rxjava3.internal.operators." + baseClassName.toLowerCase() + "." + g.getName().replace(".java", "");
 
                     Class<?> clazz = Class.forName(className);
 

@@ -18,11 +18,13 @@ import static org.junit.Assert.assertNotNull;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.Observer;
 import org.junit.Test;
 
 import io.reactivex.*;
-import io.reactivex.observers.DefaultObserver;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.observers.DefaultObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ObservableErrorHandlingTests extends RxJavaTest {
 

@@ -18,16 +18,17 @@ import static org.junit.Assert.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.reactivex.rxjava3.ObservableOperator;
 import org.junit.Test;
 
 import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.*;
-import io.reactivex.observers.*;
-import io.reactivex.plugins.RxJavaPlugins;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.Observer;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.observers.*;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.testsupport.TestHelper;
 
 public class ObservableSubscriberTest extends RxJavaTest {

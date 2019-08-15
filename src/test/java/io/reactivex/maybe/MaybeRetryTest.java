@@ -13,10 +13,10 @@
 
 package io.reactivex.maybe;
 
-import io.reactivex.Maybe;
+import io.reactivex.rxjava3.Maybe;
 import io.reactivex.RxJavaTest;
-import io.reactivex.functions.Predicate;
-import io.reactivex.internal.functions.Functions;
+import io.reactivex.rxjava3.functions.Predicate;
+import io.reactivex.rxjava3.internal.functions.Functions;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Test;

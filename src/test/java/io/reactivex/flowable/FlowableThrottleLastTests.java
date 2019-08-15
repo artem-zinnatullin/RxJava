@@ -22,8 +22,8 @@ import org.junit.Test;
 import org.mockito.InOrder;
 import org.reactivestreams.Subscriber;
 
-import io.reactivex.processors.PublishProcessor;
-import io.reactivex.schedulers.TestScheduler;
+import io.reactivex.rxjava3.processors.PublishProcessor;
+import io.reactivex.rxjava3.schedulers.TestScheduler;
 import io.reactivex.testsupport.TestHelper;
 
 public class FlowableThrottleLastTests extends RxJavaTest {

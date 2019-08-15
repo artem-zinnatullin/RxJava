@@ -19,9 +19,9 @@ import java.util.*;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.ObservableSource;
+import io.reactivex.rxjava3.Observer;
 import io.reactivex.observable.ObservableCovarianceTest.*;
 
 public class ObservableConcatTests extends RxJavaTest {

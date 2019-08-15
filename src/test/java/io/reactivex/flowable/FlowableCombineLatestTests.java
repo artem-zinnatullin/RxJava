@@ -18,9 +18,9 @@ package io.reactivex.flowable;
 import io.reactivex.RxJavaTest;
 import org.junit.*;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.Flowable;
 import io.reactivex.flowable.FlowableCovarianceTest.*;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.functions.*;
 
 public class FlowableCombineLatestTests extends RxJavaTest {
     /**

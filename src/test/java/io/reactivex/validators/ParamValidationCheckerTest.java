@@ -17,19 +17,19 @@ import java.lang.reflect.*;
 import java.util.*;
 import java.util.concurrent.*;
 
+import io.reactivex.rxjava3.*;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.Observer;
 import org.junit.Test;
 import org.reactivestreams.*;
 
-import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.*;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.parallel.*;
-import io.reactivex.plugins.RxJavaPlugins;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.functions.Functions;
+import io.reactivex.rxjava3.parallel.*;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.testsupport.TestHelper;
 
 /**
@@ -913,7 +913,7 @@ public class ParamValidationCheckerTest {
     implements BiFunction, BiConsumer,
     Predicate, BiPredicate, BooleanSupplier,
     Function3, Function4, Function5, Function6, Function7, Function8, Function9,
-    FlowableOnSubscribe, ObservableOnSubscribe, SingleOnSubscribe, MaybeOnSubscribe, CompletableOnSubscribe,
+            FlowableOnSubscribe, ObservableOnSubscribe, SingleOnSubscribe, MaybeOnSubscribe, CompletableOnSubscribe,
     FlowableTransformer, ObservableTransformer, SingleTransformer, MaybeTransformer, CompletableTransformer,
     Subscriber, FlowableSubscriber, Observer, SingleObserver, MaybeObserver, CompletableObserver,
     FlowableOperator, ObservableOperator, SingleOperator, MaybeOperator, CompletableOperator,

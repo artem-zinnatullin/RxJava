@@ -20,8 +20,8 @@ import java.util.*;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Flowable;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.functions.*;
 
 public class FlowableWindowTests extends RxJavaTest {
 

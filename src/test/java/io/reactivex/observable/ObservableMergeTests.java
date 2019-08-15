@@ -20,8 +20,8 @@ import java.util.List;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Observable;
-import io.reactivex.functions.Supplier;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.functions.Supplier;
 import io.reactivex.observable.ObservableCovarianceTest.*;
 
 public class ObservableMergeTests extends RxJavaTest {

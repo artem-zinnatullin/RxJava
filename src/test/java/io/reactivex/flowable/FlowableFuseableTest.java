@@ -17,8 +17,8 @@ import java.util.Arrays;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Flowable;
-import io.reactivex.internal.fuseable.QueueFuseable;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.internal.fuseable.QueueFuseable;
 import io.reactivex.testsupport.TestHelper;
 
 public class FlowableFuseableTest extends RxJavaTest {

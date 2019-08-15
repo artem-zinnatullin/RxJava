@@ -13,6 +13,7 @@
 
 package io.reactivex.flowable;
 
+import io.reactivex.rxjava3.Notification;
 import org.junit.*;
 
 import io.reactivex.*;

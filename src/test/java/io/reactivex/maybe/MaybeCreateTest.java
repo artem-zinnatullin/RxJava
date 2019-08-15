@@ -17,13 +17,16 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.Maybe;
+import io.reactivex.rxjava3.MaybeEmitter;
+import io.reactivex.rxjava3.MaybeOnSubscribe;
 import org.junit.Test;
 
 import io.reactivex.*;
-import io.reactivex.disposables.*;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.Cancellable;
-import io.reactivex.plugins.RxJavaPlugins;
+import io.reactivex.rxjava3.disposables.*;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.Cancellable;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import io.reactivex.testsupport.TestHelper;
 
 public class MaybeCreateTest extends RxJavaTest {

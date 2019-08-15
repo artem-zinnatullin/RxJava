@@ -13,7 +13,8 @@
 
 package io.reactivex;
 
-import io.reactivex.exceptions.TestException;
+import io.reactivex.rxjava3.*;
+import io.reactivex.rxjava3.exceptions.TestException;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 

@@ -20,8 +20,8 @@ import java.util.*;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Observable;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.functions.*;
 
 public class ObservableWindowTests extends RxJavaTest {
 

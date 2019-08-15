@@ -20,7 +20,7 @@ import java.util.*;
 import io.reactivex.RxJavaTest;
 import org.junit.Test;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.Flowable;
 
 public class FlowableStartWithTests extends RxJavaTest {
 

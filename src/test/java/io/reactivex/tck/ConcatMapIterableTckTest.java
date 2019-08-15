@@ -18,8 +18,8 @@ import java.util.Collections;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.Flowable;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.functions.Function;
 
 @Test
 public class ConcatMapIterableTckTest extends BaseTck<Integer> {

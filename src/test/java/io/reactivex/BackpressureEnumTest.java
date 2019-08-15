@@ -17,9 +17,11 @@ package io.reactivex;
 
 import static org.junit.Assert.*;
 
+import io.reactivex.rxjava3.BackpressureOverflowStrategy;
+import io.reactivex.rxjava3.BackpressureStrategy;
 import org.junit.Test;
 
-import io.reactivex.annotations.BackpressureKind;
+import io.reactivex.rxjava3.annotations.BackpressureKind;
 
 public class BackpressureEnumTest extends RxJavaTest {
 

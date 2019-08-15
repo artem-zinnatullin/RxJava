@@ -15,12 +15,14 @@ package io.reactivex;
 
 import java.util.Iterator;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.FlowableSubscriber;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.infra.Blackhole;
 import org.reactivestreams.*;
 
-import io.reactivex.internal.subscriptions.EmptySubscription;
-import io.reactivex.subscribers.DefaultSubscriber;
+import io.reactivex.rxjava3.internal.subscriptions.EmptySubscription;
+import io.reactivex.rxjava3.subscribers.DefaultSubscriber;
 
 /**
  * Exposes an Observable and Observer that increments n Integers and consumes them in a Blackhole.

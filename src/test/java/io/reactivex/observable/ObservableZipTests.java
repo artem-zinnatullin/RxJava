@@ -20,11 +20,11 @@ import java.util.*;
 import io.reactivex.RxJavaTest;
 import org.junit.*;
 
-import io.reactivex.Observable;
-import io.reactivex.functions.*;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.functions.*;
 import io.reactivex.observable.ObservableCovarianceTest.*;
 import io.reactivex.observable.ObservableEventStream.Event;
-import io.reactivex.observables.GroupedObservable;
+import io.reactivex.rxjava3.observables.GroupedObservable;
 
 public class ObservableZipTests extends RxJavaTest {
 

@@ -16,8 +16,8 @@ package io.reactivex.tck;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.Flowable;
-import io.reactivex.functions.Supplier;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.functions.Supplier;
 
 @Test
 public class DeferTckTest extends BaseTck<Long> {

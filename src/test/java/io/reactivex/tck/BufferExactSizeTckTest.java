@@ -18,7 +18,7 @@ import java.util.List;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.Flowable;
 
 @Test
 public class BufferExactSizeTckTest extends BaseTck<List<Long>> {

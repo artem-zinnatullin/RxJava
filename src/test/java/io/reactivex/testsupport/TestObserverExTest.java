@@ -25,17 +25,17 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.mockito.InOrder;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.*;
-import io.reactivex.exceptions.TestException;
-import io.reactivex.functions.*;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.internal.fuseable.QueueFuseable;
-import io.reactivex.internal.operators.observable.ObservableScalarXMap.ScalarDisposable;
-import io.reactivex.observers.TestObserver;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.*;
+import io.reactivex.rxjava3.Observable;
+import io.reactivex.rxjava3.Observer;
+import io.reactivex.rxjava3.disposables.*;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.functions.*;
+import io.reactivex.rxjava3.internal.functions.Functions;
+import io.reactivex.rxjava3.internal.fuseable.QueueFuseable;
+import io.reactivex.rxjava3.internal.operators.observable.ObservableScalarXMap.ScalarDisposable;
+import io.reactivex.rxjava3.observers.TestObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.*;
 
 public class TestObserverExTest extends RxJavaTest {
 

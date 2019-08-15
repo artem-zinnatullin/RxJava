@@ -13,17 +13,21 @@
 
 package io.reactivex;
 
+import io.reactivex.rxjava3.CompletableObserver;
+import io.reactivex.rxjava3.MaybeObserver;
+import io.reactivex.rxjava3.Observer;
+import io.reactivex.rxjava3.SingleObserver;
 import org.openjdk.jmh.infra.Blackhole;
 import org.reactivestreams.*;
 
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * A multi-type synchronous consumer that doesn't implement FlowableSubscriber and
  * thus should be treated by Flowable as a candidate for strict interop.
  */
 public final class PerfInteropConsumer implements Subscriber<Object>, Observer<Object>,
-SingleObserver<Object>, CompletableObserver, MaybeObserver<Object> {
+        SingleObserver<Object>, CompletableObserver, MaybeObserver<Object> {
 
     final Blackhole bh;
 

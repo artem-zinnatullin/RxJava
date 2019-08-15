@@ -18,9 +18,9 @@ import java.util.List;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.Flowable;
-import io.reactivex.functions.Function;
-import io.reactivex.internal.functions.Functions;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.internal.functions.Functions;
 
 @Test
 public class WindowExactSizeTckTest extends BaseTck<List<Long>> {

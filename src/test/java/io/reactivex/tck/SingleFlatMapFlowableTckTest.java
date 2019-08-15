@@ -13,11 +13,12 @@
 
 package io.reactivex.tck;
 
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.Single;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.*;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.functions.Function;
 
 @Test
 public class SingleFlatMapFlowableTckTest extends BaseTck<Integer> {

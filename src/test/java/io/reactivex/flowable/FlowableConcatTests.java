@@ -20,7 +20,7 @@ import io.reactivex.RxJavaTest;
 import org.junit.Test;
 import org.reactivestreams.*;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.Flowable;
 import io.reactivex.flowable.FlowableCovarianceTest.*;
 
 public class FlowableConcatTests extends RxJavaTest {

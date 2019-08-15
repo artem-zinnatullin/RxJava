@@ -19,8 +19,8 @@ import org.reactivestreams.*;
 import org.reactivestreams.tck.*;
 import org.testng.annotations.Test;
 
-import io.reactivex.exceptions.TestException;
-import io.reactivex.processors.UnicastProcessor;
+import io.reactivex.rxjava3.exceptions.TestException;
+import io.reactivex.rxjava3.processors.UnicastProcessor;
 
 @Test
 public class UnicastProcessorTckTest extends IdentityProcessorVerification<Integer> {

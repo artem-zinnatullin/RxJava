@@ -16,8 +16,8 @@ package io.reactivex.tck;
 import org.reactivestreams.Publisher;
 import org.testng.annotations.Test;
 
-import io.reactivex.Flowable;
-import io.reactivex.schedulers.Timed;
+import io.reactivex.rxjava3.Flowable;
+import io.reactivex.rxjava3.schedulers.Timed;
 
 @Test
 public class TimestampTckTest extends BaseTck<Timed<Integer>> {
