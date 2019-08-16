@@ -71,7 +71,7 @@ dependencies {
     api "org.reactivestreams:reactive-streams:$reactiveStreamsVersion"
     jmh "org.reactivestreams:reactive-streams:$reactiveStreamsVersion"
 
-    implementation "io.reactivex.rxjava3:rxjava:3.0.0-RC1-ARTEM1"
+    compileOnly "io.reactivex.rxjava3:rxjava:3.0.0-RC1-ARTEM1"
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
@@ -197,7 +197,25 @@ publishing.publications.all {
       it.scope.text() == "runtime" && project.configurations.compile.allDependencies.find { dep ->
         dep.name == it.artifactId.text()
       }
-    }.each { it.scope*.value = "compile"}
+    }.each { it.scope*.value = "compile" }
+
+    // Gradle does not support generating <optional> in a <dependency>
+    // nor mapping compileOnly dependencies into the POM.
+    // Thus we do it ourselves.
+    configurations
+        .compileOnly
+        .dependencies
+        .findAll { compileOnlyDep ->
+          def dependency = new Node(asNode().dependencies[0], "dependency")
+
+          dependency.appendNode("groupId", compileOnlyDep.group)
+          dependency.appendNode("artifactId", compileOnlyDep.name)
+          dependency.appendNode("version", compileOnlyDep.version)
+          dependency.appendNode("scope", "compile")
+          dependency.appendNode("optional", "true")
+
+          dependency
+        }
   }
 }
 
